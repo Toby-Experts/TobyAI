@@ -3,59 +3,89 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Page Not Found — Toby AI</title>
+<title>Page Not Found | TobyAI</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232a9d8f'/%3E%3Ctext x='16' y='23' text-anchor='middle' font-family='system-ui' font-weight='800' font-size='20' fill='white'%3ET%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script defer data-domain="tobyai.io" src="https://plausible.io/js/script.js"></script>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root { --ink: #0e1520; --teal: #2a9d8f; --teal-dim: #1e7268; --teal-line: rgba(42,157,143,0.3); --fog: rgba(255,255,255,0.045); --muted: rgba(255,255,255,0.38); --soft: rgba(255,255,255,0.62); --white: #ffffff; --serif: 'DM Serif Display', Georgia, serif; --sans: 'DM Sans', system-ui, sans-serif; }
-  body { font-family: var(--sans); background: var(--ink); color: var(--white); min-height: 100vh; display: flex; flex-direction: column; }
-  .bg-layer { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
-  .bg-layer::before { content: ''; position: absolute; top: -20%; left: 50%; transform: translateX(-50%); width: 900px; height: 900px; border-radius: 50%; background: radial-gradient(ellipse at center, rgba(42,157,143,0.13) 0%, rgba(42,157,143,0.04) 40%, transparent 70%); }
-  .wrapper { position: relative; z-index: 2; flex: 1; display: flex; flex-direction: column; }
-  nav { padding: 32px 6%; display: flex; align-items: center; justify-content: space-between; }
-  .logo { display: flex; align-items: center; gap: 11px; text-decoration: none; }
-  .logo-mark { width: 34px; height: 34px; border-radius: 9px; background: linear-gradient(135deg, #2a9d8f, #2a7ca5); display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 17px; color: white; box-shadow: 0 0 20px rgba(42,157,143,0.35); }
-  .logo-text { font-weight: 600; font-size: 17px; color: rgba(255,255,255,0.9); }
-  .logo-text em { font-style: normal; color: var(--teal); }
-  main { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 60px 6%; }
-  .code { font-size: 11.5px; font-weight: 500; letter-spacing: 1.8px; text-transform: uppercase; color: var(--teal); margin-bottom: 24px; }
-  h1 { font-family: var(--serif); font-size: clamp(32px, 5vw, 52px); font-weight: 400; line-height: 1.1; margin-bottom: 20px; }
-  p { font-size: 16px; font-weight: 300; color: var(--soft); max-width: 400px; line-height: 1.7; margin-bottom: 40px; }
-  .btn { display: inline-block; padding: 13px 28px; background: var(--teal); color: white; border-radius: 10px; font-family: var(--sans); font-size: 14px; font-weight: 600; text-decoration: none; transition: background 0.2s, transform 0.15s; box-shadow: 0 4px 24px rgba(42,157,143,0.25); }
-  .btn:hover { background: var(--teal-dim); transform: translateY(-1px); }
-  footer { position: relative; z-index: 2; padding: 28px 6%; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(255,255,255,0.05); }
-  .footer-left { font-size: 12px; color: var(--muted); }
-  .footer-right { display: flex; gap: 20px; }
-  .footer-right a { font-size: 12px; color: var(--muted); text-decoration: none; }
-  .footer-right a:hover { color: var(--teal); }
-  @media (max-width: 560px) { footer { flex-direction: column; gap: 12px; text-align: center; } .footer-right { justify-content: center; } }
+  :root {
+    --navy:      #1a2535;
+    --navy2:     #162030;
+    --teal:      #2a9d8f;
+    --teal2:     #21867a;
+    --teal-glow: #5abfb3;
+    --font-head: 'Big Shoulders Display', system-ui, sans-serif;
+    --font-body: 'Instrument Sans', system-ui, sans-serif;
+  }
+  html, body { height: 100%; font-family: var(--font-body); background: var(--navy2); color: white; -webkit-font-smoothing: antialiased; }
+  body { display: flex; flex-direction: column; min-height: 100vh; }
+
+  .bg { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+  .bg-orb { position: absolute; border-radius: 50%; background: radial-gradient(circle, rgba(42,157,143,0.11) 0%, transparent 68%); width: 900px; height: 900px; top: -300px; left: 50%; transform: translateX(-50%); }
+  .bg-grid {
+    position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(255,255,255,0.022) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.022) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse 70% 55% at 50% 10%, black 0%, transparent 80%);
+  }
+
+  nav { position: relative; z-index: 2; padding: 20px 32px; display: flex; align-items: center; gap: 10px; }
+  .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .logo-mark {
+    width: 34px; height: 34px; border-radius: 9px;
+    background: linear-gradient(135deg, #2a9d8f, #21867a);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-head); font-weight: 900; font-size: 18px; color: white;
+    box-shadow: 0 0 0 1px rgba(42,157,143,0.35), 0 4px 14px rgba(42,157,143,0.2);
+  }
+  .logo-text { font-family: var(--font-head); font-weight: 800; font-size: 20px; color: white; letter-spacing: -0.5px; }
+  .logo-text span { color: var(--teal-glow); }
+
+  main { position: relative; z-index: 2; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 60px 24px; }
+  .code { font-size: 12px; font-weight: 600; letter-spacing: 1.8px; text-transform: uppercase; color: var(--teal-glow); margin-bottom: 20px; }
+  h1 { font-family: var(--font-head); font-size: clamp(42px, 8vw, 80px); font-weight: 900; line-height: 0.95; letter-spacing: -2px; color: white; margin-bottom: 18px; }
+  p { font-size: 16px; font-weight: 500; color: rgba(255,255,255,0.4); max-width: 420px; line-height: 1.65; margin-bottom: 40px; }
+  .btn {
+    display: inline-block; padding: 15px 30px; border-radius: 9px;
+    background: var(--teal); color: white; text-decoration: none;
+    font-size: 15px; font-weight: 700; font-family: var(--font-body);
+    transition: all 0.2s; box-shadow: 0 4px 20px rgba(42,157,143,0.35);
+  }
+  .btn:hover { background: var(--teal2); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(42,157,143,0.45); }
+
+  footer { position: relative; z-index: 2; margin-top: auto; text-align: center; padding: 24px; font-size: 12px; color: rgba(255,255,255,0.2); }
+  footer a { color: var(--teal-glow); text-decoration: none; }
+  footer a:hover { color: white; }
 </style>
-<script defer data-domain="tobyai.io" src="https://plausible.io/js/script.js"></script>
 </head>
 <body>
-<div class="bg-layer"></div>
-<div class="wrapper">
-  <nav>
-    <a href="/" class="logo"><div class="logo-mark">T</div><span class="logo-text">Toby<em>AI</em></span></a>
-  </nav>
-  <main>
-    <div class="code">404</div>
-    <h1>Page not found.</h1>
-    <p>The page you're looking for doesn't exist or has been moved.</p>
-    <a href="/" class="btn">&larr; Back to home</a>
-  </main>
-  <footer>
-    <div class="footer-left">&copy; 2026 Toby AI</div>
-    <div class="footer-right">
-      <a href="https://x.com/toby_ai_" target="_blank" rel="noopener">X / Twitter</a>
-      <a href="mailto:hello@tobyai.io">hello@tobyai.io</a>
-      <a href="privacy.html">Privacy</a>
-      <a href="terms.html">Terms</a>
-    </div>
-  </footer>
+<div class="bg">
+  <div class="bg-orb"></div>
+  <div class="bg-grid"></div>
 </div>
+
+<nav>
+  <a href="/" class="logo">
+    <div class="logo-mark">T</div>
+    <span class="logo-text">Toby<span>AI</span></span>
+  </a>
+</nav>
+
+<main>
+  <div class="code">404</div>
+  <h1>Page not found.</h1>
+  <p>The page you're after doesn't exist or has moved. Let's get you back on track.</p>
+  <a href="/" class="btn">← Back to home</a>
+</main>
+
+<footer>
+  <a href="mailto:hello@tobyai.io">hello@tobyai.io</a>
+  &nbsp;·&nbsp; <a href="/privacy.html">Privacy</a>
+  &nbsp;·&nbsp; <a href="/terms.html">Terms</a>
+  &nbsp;·&nbsp; © 2026 TobyAI · Brisbane, Australia
+</footer>
 </body>
 </html>
