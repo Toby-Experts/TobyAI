@@ -1,2 +1,4 @@
-azure-functions
+fastapi
+uvicorn[standard]
 azure-data-tables
+pydantic[email]

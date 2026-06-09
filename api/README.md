@@ -1,99 +1,99 @@
-# Waitlist API (Azure Functions, Python)
+# Waitlist API (FastAPI on Azure Container Apps)
 
-HTTP endpoint that receives waitlist signups from the marketing site and stores
-each one as a row in **Azure Table Storage**. Deploy it to an **Australian
-region** so signup data stays in Australia, consistent with the site's
-"Client data stays in Australia" promise.
+A small **FastAPI** service that receives waitlist signups from the marketing
+site and stores each one as a row in **Azure Table Storage**. It runs as a
+container on **Azure Container Apps** in an **Australian region**, so signup
+data stays in Australia.
 
-- Runtime: Python (Azure Functions v2 programming model)
-- Route: `POST /waitlist`
+- Framework: FastAPI (auto OpenAPI docs at `/docs`)
+- Endpoint: `POST /waitlist`, plus `GET /healthz` for probes
 - Store: Table `waitlist` in your storage account
-- CORS: handled in code, restricted to `https://tobyai.io` and `https://www.tobyai.io`
+- CORS: handled by FastAPI middleware, restricted to `https://tobyai.io` and `https://www.tobyai.io`
+- Hosting: Azure Container Apps (consumption, scales to zero when idle)
+
+## Scope / architecture note
+
+This is just the signup endpoint, so it's a plain REST API. The **Model Context
+Protocol (MCP)** standard applies to TobyAI's product tool layer — how the AI
+agent calls the finance/tax-prep tools — and is intentionally **out of scope for
+the waitlist**. MCP adds no value to a signup form.
+
+## Layout
+
+| Path | Purpose |
+| --- | --- |
+| `app/main.py` | FastAPI app: the `/waitlist` endpoint, validation, Table Storage write |
+| `requirements.txt` | Python dependencies |
+| `Dockerfile` | Container image (uvicorn on port 8000) |
+| `.dockerignore` | Files kept out of the image |
 
 ## Data residency (must stay in Australia)
 
-Signup data lives wherever the **storage account** is created, so the one rule
-that matters: create the storage account (and the function app) in an Australian
-region — `australiaeast` (Sydney) is used throughout this guide.
+Signup data lives wherever the **storage account** is created, so create the
+storage account **and** the Container App in an Australian region —
+`australiaeast` (Sydney) is used throughout. Australia is a single Azure geo, so
+even geo-redundant storage (GRS) pairs `australiaeast` with `australiasoutheast`
+(Melbourne) — both in Australia. Do not recreate these resources in a non-AU
+region.
 
-- Australia is a single Azure geo. Even geo-redundant storage (GRS) pairs
-  `australiaeast` with `australiasoutheast` (Melbourne) — both in Australia — so
-  no redundancy setting ships data offshore.
-- Keep the function app in the same region so data is processed in Australia too.
-- Do **not** recreate these resources in a non-AU region; that is the only way
-  the "Client data stays in Australia" promise would break.
-
-## Files
-
-| File | Purpose |
-| --- | --- |
-| `function_app.py` | The HTTP-triggered function |
-| `requirements.txt` | Python dependencies |
-| `host.json` | Host config (`routePrefix: ""` so the route is `/waitlist`, not `/api/waitlist`) |
-| `local.settings.json.example` | Template for local settings (copy to `local.settings.json`, never commit the real one) |
-
-## One-time Azure setup (Australia East)
+## Run locally
 
 ```bash
-# Variables
+pip install -r requirements.txt
+# Point at a real AU storage account, or run Azurite for local Table emulation:
+export WAITLIST_TABLE_CONNECTION="UseDevelopmentStorage=true"
+uvicorn app.main:app --reload
+# POST to http://localhost:8000/waitlist ; interactive docs at /docs
+```
+
+## Deploy to Azure Container Apps (Australia East)
+
+```bash
 RG=tobyai-rg
 LOC=australiaeast
-STG=tobyaiwaitlist$RANDOM          # storage account name (lowercase, globally unique)
-APP=tobyai-waitlist-fn            # function app name (globally unique)
+STG=tobyaiwaitlist$RANDOM      # storage account (lowercase, globally unique)
+APP=tobyai-waitlist           # container app name
 
-# Resource group + storage account in Australia
+# Resource group + AU storage account
 az group create -n $RG -l $LOC
 az storage account create -n $STG -g $RG -l $LOC --sku Standard_LRS
-
-# Python Function App (consumption plan) in Australia
-az functionapp create -n $APP -g $RG -l $LOC \
-  --storage-account $STG --consumption-plan-location $LOC \
-  --runtime python --runtime-version 3.11 --functions-version 4 --os-type Linux
-
-# Point the function at the AU storage account for the waitlist table
 CONN=$(az storage account show-connection-string -n $STG -g $RG --query connectionString -o tsv)
-az functionapp config appsettings set -n $APP -g $RG \
-  --settings WAITLIST_TABLE_CONNECTION="$CONN"
+
+# Build the image from the Dockerfile and deploy to Container Apps (AU).
+# `az containerapp up` provisions the environment + app and wires up ingress.
+az containerapp up \
+  -n $APP -g $RG -l $LOC \
+  --source . \
+  --ingress external --target-port 8000 \
+  --env-vars WAITLIST_TABLE_CONNECTION="$CONN"
 ```
 
-> **CORS:** leave the Function App's portal CORS list **empty**. CORS is handled
-> in `function_app.py`. If you also add origins in the portal you can end up with
-> duplicate `Access-Control-Allow-Origin` headers, which browsers reject.
+The command prints the app URL, e.g. `https://tobyai-waitlist.<hash>.australiaeast.azurecontainerapps.io`.
+The endpoint is that URL + `/waitlist`.
 
-## Deploy
+> CORS is enforced in the app (`ALLOWED_ORIGINS` in `app/main.py`). Update that
+> list if the site's origin ever changes.
 
-From this `api/` folder, with the [Azure Functions Core Tools](https://learn.microsoft.com/azure/azure-functions/functions-run-local) installed:
+### Scale to zero (optional, cheaper)
 
 ```bash
-func azure functionapp publish tobyai-waitlist-fn
+az containerapp update -n $APP -g $RG --min-replicas 0
 ```
 
-After deploy, the endpoint is:
+## Custom domain
 
-```
-https://tobyai-waitlist-fn.azurewebsites.net/waitlist
-```
-
-## Custom domain (recommended)
-
-The marketing site lives on the apex `tobyai.io` (GitHub Pages), so the API uses
-a subdomain. Map **`api.tobyai.io`** to the function app:
-
-1. Add a CNAME `api` -> `tobyai-waitlist-fn.azurewebsites.net` in DNS.
-2. In the Function App: **Custom domains** -> add `api.tobyai.io`, then create a
-   free **App Service Managed Certificate** and bind it.
-
-The endpoint is then `https://api.tobyai.io/waitlist`, which is what the site's
-`WAITLIST_ENDPOINT` is set to in `index.html`.
-
-## Local testing
+The marketing site is on the apex `tobyai.io` (GitHub Pages), so the API uses a
+subdomain. Map **`api.tobyai.io`** to the container app:
 
 ```bash
-cp local.settings.json.example local.settings.json   # fill in WAITLIST_TABLE_CONNECTION
-pip install -r requirements.txt
-func start
-# POST to http://localhost:7071/waitlist
+az containerapp hostname add -n $APP -g $RG --hostname api.tobyai.io
+az containerapp hostname bind -n $APP -g $RG --hostname api.tobyai.io \
+  --environment <your-containerapp-env> --validation-method CNAME
 ```
+
+Add the CNAME `api` -> the app's default FQDN in DNS first. The endpoint is then
+`https://api.tobyai.io/waitlist`, which is what the site's `WAITLIST_ENDPOINT`
+in `index.html` points to.
 
 ## Viewing / exporting signups
 

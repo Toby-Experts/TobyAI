@@ -1,6 +1,0 @@
-.git*
-.venv
-local.settings.json
-local.settings.json.example
-README.md
-__pycache__
