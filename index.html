@@ -3,20 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TobyAI | Toby does the prep. You sign off.</title>
-<meta name="description" content="Toby is an Australian finance offsider for privately owned business. It computes your tax and bookkeeping prep in auditable Python you can trace, never sends client data to AI, and leaves the sign-off to you. Join the waitlist.">
-<meta property="og:title" content="TobyAI | Toby does the prep. You sign off.">
-<meta property="og:description" content="An Australian finance offsider for privately owned business. Auditable numbers, no client data to AI, you stay in control. Join the waitlist.">
+<title>TobyAI</title>
+<meta name="description" content="TobyAI is coming soon. Join the waitlist.">
+<meta name="robots" content="noindex">
+<meta property="og:title" content="TobyAI">
+<meta property="og:description" content="Coming soon. Join the waitlist.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://tobyai.io">
-<meta property="og:locale" content="en_AU">
 <meta property="og:image" content="https://tobyai.io/toby_logo_1024.png">
 <meta property="og:image:width" content="1024">
 <meta property="og:image:height" content="1024">
 <meta property="og:image:alt" content="TobyAI logo">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="TobyAI | Toby does the prep. You sign off.">
-<meta name="twitter:description" content="An Australian finance offsider for privately owned business. Auditable numbers, no client data to AI, you stay in control. Join the waitlist.">
+<meta name="twitter:title" content="TobyAI">
+<meta name="twitter:description" content="Coming soon. Join the waitlist.">
 <meta name="twitter:image" content="https://tobyai.io/toby_logo_1024.png">
 <meta name="twitter:image:alt" content="TobyAI logo">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -60,79 +60,48 @@
     mask-image: radial-gradient(ellipse 70% 55% at 50% 10%, black 0%, transparent 80%);
   }
 
-  .logo {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 10;
-    padding: 20px 32px; display: flex; align-items: center; gap: 10px;
-  }
-  .logo-mark {
-    width: 34px; height: 34px; border-radius: 9px;
-    background: linear-gradient(135deg, #2a9d8f, #21867a);
-    display: flex; align-items: center; justify-content: center;
-    font-family: var(--font-head); font-weight: 900; font-size: 18px; color: white;
-    box-shadow: 0 0 0 1px rgba(42,157,143,0.35), 0 4px 14px rgba(42,157,143,0.2);
-  }
-  .logo-text { font-family: var(--font-head); font-weight: 800; font-size: 20px; color: white; letter-spacing: -0.5px; }
-  .logo-text span { color: var(--teal-glow); }
-
   .content {
     position: relative; z-index: 1;
-    text-align: center; max-width: 600px;
+    text-align: center; max-width: 460px;
     animation: rise 0.8s ease both;
   }
   @keyframes rise { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-  .badge {
-    display: inline-flex; align-items: center; gap: 8px;
-    border: 1px solid rgba(42,157,143,0.25); background: rgba(42,157,143,0.08);
-    color: var(--teal-glow); border-radius: 20px;
-    padding: 6px 16px; font-size: 13px; font-weight: 600;
-    margin-bottom: 36px;
-    animation: rise 0.8s 0.05s ease both;
+  .brand { display: inline-flex; align-items: center; gap: 12px; margin-bottom: 40px; }
+  .logo-mark {
+    width: 56px; height: 56px; border-radius: 14px;
+    background: linear-gradient(135deg, #2a9d8f, #21867a);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-head); font-weight: 900; font-size: 30px; color: white;
+    box-shadow: 0 0 0 1px rgba(42,157,143,0.35), 0 6px 20px rgba(42,157,143,0.25);
   }
+  .logo-text { font-family: var(--font-head); font-weight: 800; font-size: 34px; color: white; letter-spacing: -0.5px; }
+  .logo-text span { color: var(--teal-glow); }
 
   h1 {
     font-family: var(--font-head);
-    font-size: clamp(50px, 9vw, 98px);
-    font-weight: 900; line-height: 1.04; letter-spacing: -2.5px;
-    color: white; margin-bottom: 16px;
+    font-size: clamp(44px, 8vw, 72px);
+    font-weight: 900; line-height: 1.05; letter-spacing: -2px;
+    color: white; margin-bottom: 18px;
     animation: rise 0.8s 0.1s ease both;
   }
-  h1 .accent { color: var(--teal-glow); display: block; }
+  h1 .accent { color: var(--teal-glow); }
 
   .tagline {
-    font-size: clamp(15px, 2vw, 18px); font-weight: 500;
-    color: rgba(255,255,255,0.4); margin-bottom: 44px; line-height: 1.65;
+    font-size: clamp(15px, 2vw, 17px); font-weight: 500;
+    color: rgba(255,255,255,0.45); margin-bottom: 40px; line-height: 1.6;
     animation: rise 0.8s 0.15s ease both;
   }
-  .tagline strong { color: rgba(255,255,255,0.68); font-weight: 600; }
 
-  .themes {
-    display: flex; justify-content: center; gap: 8px; flex-wrap: wrap;
-    margin-bottom: 48px;
-    animation: rise 0.8s 0.2s ease both;
-  }
-  .theme-pill {
-    border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.04);
-    color: rgba(255,255,255,0.45); border-radius: 20px;
-    padding: 6px 15px; font-size: 13px; font-weight: 500;
-  }
-
-  .form-wrap { max-width: 420px; margin: 0 auto; animation: rise 0.8s 0.25s ease both; }
-  .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+  .form-wrap { max-width: 380px; margin: 0 auto; animation: rise 0.8s 0.2s ease both; }
   .form-field {
-    width: 100%; padding: 13px 16px;
+    width: 100%; padding: 14px 16px;
     background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
     border-radius: 9px; font-size: 14px; color: white; font-family: var(--font-body);
     outline: none; transition: border-color 0.2s, background 0.2s; margin-bottom: 10px;
   }
   .form-field:focus { border-color: var(--teal); background: rgba(255,255,255,0.08); }
   .form-field::placeholder { color: rgba(255,255,255,0.28); }
-  .form-field option { background: #1e2e42; }
-  select.form-field {
-    appearance: none; -webkit-appearance: none; cursor: pointer;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.3)' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
-    background-repeat: no-repeat; background-position: right 14px center; padding-right: 34px;
-  }
   .form-btn {
     width: 100%; padding: 15px; border-radius: 9px;
     background: var(--teal); color: white; border: none;
@@ -146,27 +115,21 @@
   .error-msg { font-size: 12px; color: #f87171; margin-bottom: 8px; display: none; }
 
   .success {
-    display: none; text-align: center; padding: 32px 24px;
+    display: none; text-align: center; padding: 28px 24px;
     background: rgba(42,157,143,0.09); border: 1px solid rgba(42,157,143,0.22);
-    border-radius: 14px; max-width: 420px; margin: 0 auto;
+    border-radius: 14px; max-width: 380px; margin: 0 auto;
   }
   .success-icon { font-size: 32px; margin-bottom: 10px; }
   .success h3 { font-family: var(--font-head); font-size: 24px; font-weight: 800; color: var(--teal-glow); margin-bottom: 8px; }
   .success p { font-size: 14px; color: rgba(255,255,255,0.45); line-height: 1.65; }
 
   footer {
-    position: relative; z-index: 1; margin-top: 56px; text-align: center;
+    position: relative; z-index: 1; margin-top: 48px; text-align: center;
     font-size: 12px; color: rgba(255,255,255,0.2);
     animation: rise 0.8s 0.3s ease both;
   }
   footer a { color: var(--teal-glow); text-decoration: none; }
   footer a:hover { color: white; }
-
-  @media (max-width: 520px) {
-    .form-row-2 { grid-template-columns: 1fr; }
-    h1 { letter-spacing: -1.8px; }
-    .logo { padding: 16px 20px; }
-  }
 </style>
 </head>
 <body>
@@ -179,54 +142,28 @@
     <div class="bg-grid"></div>
   </div>
 
-  <div class="logo">
-    <div class="logo-mark">T</div>
-    <span class="logo-text">Toby<span>AI</span></span>
-  </div>
-
   <div class="content">
-    <div class="badge">🇦🇺 For privately owned Australian business</div>
-
-    <h1>Toby does the prep.<br><span class="accent">You sign off.</span></h1>
-
-    <p class="tagline">
-      An Australian finance offsider for privately owned business. Toby computes the
-      tax and bookkeeping prep in <strong>auditable Python you can trace</strong>,
-      keeps client data away from AI, and leaves the sign-off to you.<br>
-      Whether you run the business or do the books for it, <strong>get through EOFY faster</strong> without trusting numbers you can't check.
-    </p>
-
-    <div class="themes">
-      <span class="theme-pill">Deterministic, not guessed</span>
-      <span class="theme-pill">No client data to AI</span>
-      <span class="theme-pill">Client data stays in Australia</span>
-      <span class="theme-pill">Prepares, never lodges</span>
+    <div class="brand">
+      <div class="logo-mark">T</div>
+      <span class="logo-text">Toby<span>AI</span></span>
     </div>
+
+    <h1>Coming <span class="accent">soon.</span></h1>
+
+    <p class="tagline">We're building something. Join the waitlist to be first to know.</p>
 
     <div class="form-wrap">
       <div id="signup-form">
-        <div class="form-row-2">
-          <input type="text"  id="f-name"  class="form-field" placeholder="Your name">
-          <input type="text"  id="f-biz"   class="form-field" placeholder="Business name">
-        </div>
-        <input type="email" id="f-email" class="form-field" placeholder="Work email address">
-        <select id="f-type" class="form-field">
-          <option value="" disabled selected>I am…</option>
-          <option value="Business Owner / Director">A business owner or director</option>
-          <option value="CFO / Finance Manager">A CFO or finance manager</option>
-          <option value="Bookkeeper">A bookkeeper</option>
-          <option value="Accountant">An accountant</option>
-          <option value="Other">Other</option>
-        </select>
-        <div class="error-msg" id="form-error">Please fill in all fields above.</div>
+        <input type="email" id="f-email" class="form-field" placeholder="Email address">
+        <div class="error-msg" id="form-error">Please enter a valid email address.</div>
         <button class="form-btn" id="form-btn" onclick="submitForm()">Join the Waitlist →</button>
-        <p class="form-note">No spam. No commitment. We'll reach out when early access opens.</p>
+        <p class="form-note">No spam. We'll reach out when we're ready.</p>
       </div>
 
       <div class="success" id="success-msg">
         <div class="success-icon">✅</div>
         <h3>You're on the list.</h3>
-        <p>We'll be in touch when early access opens. You'll start with the free Xero Data Health Check, no commitment.</p>
+        <p>We'll be in touch when early access opens.</p>
       </div>
     </div>
   </div>
@@ -235,7 +172,7 @@
     <a href="mailto:hello@tobyai.io">hello@tobyai.io</a>
     &nbsp;·&nbsp; <a href="/privacy.html">Privacy</a>
     &nbsp;·&nbsp; <a href="/terms.html">Terms</a>
-    &nbsp;·&nbsp; © 2026 TobyAI · Brisbane, Australia
+    &nbsp;·&nbsp; © 2026 TobyAI
   </footer>
 </div>
 
@@ -243,13 +180,10 @@
   var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwKahbBF02NvIaMZado7vuzlCKYe0BUHbqxTnwidfGEl94B6kqm3dUxrC9yy1NVPlPF5A/exec';
 
   function submitForm() {
-    var name  = document.getElementById('f-name').value.trim();
-    var biz   = document.getElementById('f-biz').value.trim();
     var email = document.getElementById('f-email').value.trim();
-    var type  = document.getElementById('f-type').value;
     var err   = document.getElementById('form-error');
     err.style.display = 'none';
-    if (!name || !biz || !email || !email.includes('@') || !type) {
+    if (!email || !email.includes('@')) {
       err.style.display = 'block'; return;
     }
     var btn = document.getElementById('form-btn');
@@ -258,7 +192,7 @@
       method: 'POST', mode: 'no-cors',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        name: name, business: biz, email: email, type: type,
+        name: '—', business: '—', email: email, type: '—',
         revenue: '—', industry: '—', tier: 'Waitlist',
         submitted: new Date().toISOString()
       })
