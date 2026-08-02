@@ -177,31 +177,29 @@
 </div>
 
 <script>
-  var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwKahbBF02NvIaMZado7vuzlCKYe0BUHbqxTnwidfGEl94B6kqm3dUxrC9yy1NVPlPF5A/exec';
-
   function submitForm() {
     var email = document.getElementById('f-email').value.trim();
     var err   = document.getElementById('form-error');
     err.style.display = 'none';
     if (!email || !email.includes('@')) {
+      err.textContent = 'Please enter a valid email address.';
       err.style.display = 'block'; return;
     }
     var btn = document.getElementById('form-btn');
     btn.disabled = true; btn.textContent = 'Sending…';
-    fetch(SCRIPT_URL, {
-      method: 'POST', mode: 'no-cors',
+    fetch('/.netlify/functions/waitlist', {
+      method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        name: '—', business: '—', email: email, type: '—',
-        revenue: '—', industry: '—', tier: 'Waitlist',
-        submitted: new Date().toISOString()
-      })
-    }).then(done).catch(done);
-  }
-
-  function done() {
-    document.getElementById('signup-form').style.display = 'none';
-    document.getElementById('success-msg').style.display = 'block';
+      body: JSON.stringify({ email: email })
+    }).then(function (res) {
+      if (!res.ok) throw new Error('Request failed');
+      document.getElementById('signup-form').style.display = 'none';
+      document.getElementById('success-msg').style.display = 'block';
+    }).catch(function () {
+      err.textContent = 'Something went wrong. Please try again.';
+      err.style.display = 'block';
+      btn.disabled = false; btn.textContent = 'Join the Waitlist →';
+    });
   }
 </script>
 
