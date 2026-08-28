@@ -81,6 +81,7 @@
   .form-note { margin-top: 13px; font-size: 13px; line-height: 1.6; color: rgba(255,255,255,0.55); }
   .form-note a { color: var(--teal-g); text-underline-offset: 2px; }
   .error-msg { font-size: 12px; color: #f87171; margin-top: 8px; display: none; }
+  .honeypot { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
 
   .success {
     display: none; text-align: center; padding: 28px 24px;
@@ -197,10 +198,13 @@
           <input class="field" type="email" id="f-email" placeholder="you@firm.com.au">
           <button class="btn" id="form-btn" onclick="submitForm()">Request early access</button>
         </div>
+        <div class="honeypot" aria-hidden="true">
+          <input type="text" id="company-website" name="company_website" tabindex="-1" autocomplete="off">
+        </div>
         <div class="error-msg" id="form-error">Please enter a valid email address.</div>
         <p class="form-note">
-          One email when access opens, nothing else. Signups are held in Google Sheets until our own
-          Australian service is running, as the <a href="/privacy.html">privacy policy</a> sets out.
+          One email when access opens, nothing else. Signups are stored on our own Australian
+          infrastructure in Sydney, as the <a href="/privacy.html">privacy policy</a> sets out.
         </p>
       </div>
       <div class="success" id="success-msg">
@@ -362,7 +366,7 @@
 </div>
 
 <script>
-  var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwKahbBF02NvIaMZado7vuzlCKYe0BUHbqxTnwidfGEl94B6kqm3dUxrC9yy1NVPlPF5A/exec';
+  var SCRIPT_URL = 'https://pc24esfy6h.execute-api.ap-southeast-2.amazonaws.com/waitlist';
 
   function submitForm() {
     var email = document.getElementById('f-email').value.trim();
@@ -374,19 +378,38 @@
     var btn = document.getElementById('form-btn');
     btn.disabled = true; btn.textContent = 'Sending…';
     fetch(SCRIPT_URL, {
-      method: 'POST', mode: 'no-cors',
+      method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        name: '—', business: '—', email: email, type: '—',
-        revenue: '—', industry: '—', tier: 'Waitlist',
-        submitted: new Date().toISOString()
+        email: email,
+        company_website: document.getElementById('company-website').value
       })
-    }).then(done).catch(done);
+    }).then(function(response) {
+      if (response.status === 202) {
+        done(); return;
+      }
+      if (response.status === 429) {
+        fail('Too many requests have come from this connection. Please try again later.');
+        return;
+      }
+      fail('We could not record your signup. Please email us.');
+    }).catch(function() {
+      fail('We could not record your signup. Please email us.');
+    });
   }
 
   function done() {
     document.getElementById('signup-form').style.display = 'none';
     document.getElementById('success-msg').style.display = 'block';
+  }
+
+  function fail(message) {
+    var btn = document.getElementById('form-btn');
+    var err = document.getElementById('form-error');
+    err.textContent = message;
+    err.style.display = 'block';
+    btn.disabled = false;
+    btn.textContent = 'Request early access';
   }
 </script>
 
