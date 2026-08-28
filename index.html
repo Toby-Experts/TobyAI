@@ -3,10 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TobyAI, Australian compliance answers with the law attached</title>
-<meta name="description" content="Australian tax and employment compliance for businesses, bookkeepers and accountants. Every answer is computed in auditable code and shown with the provision it rests on.">
+<link rel="icon" href="/toby_logo_512.svg">
+<title>TobyAI, federal and state compliance in one place</title>
+<meta name="description" content="Federal and state compliance answered in one place, with every figure computed in auditable code rather than guessed by AI.">
 <meta property="og:title" content="TobyAI">
-<meta property="og:description" content="Australian compliance answers, quoted from the law they rest on.">
+<meta property="og:description" content="Federal and state compliance answered in one place, computed in auditable code rather than guessed by AI.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://tobyai.io">
 <meta property="og:image" content="https://tobyai.io/toby_logo_1024.png">
@@ -15,207 +16,348 @@
 <meta property="og:image:alt" content="TobyAI logo">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="TobyAI">
-<meta name="twitter:description" content="Australian compliance answers, quoted from the law they rest on.">
+<meta name="twitter:description" content="Federal and state compliance answered in one place, computed in auditable code rather than guessed by AI.">
 <meta name="twitter:image" content="https://tobyai.io/toby_logo_1024.png">
 <meta name="twitter:image:alt" content="TobyAI logo">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
 <script defer data-domain="tobyai.io" src="https://plausible.io/js/script.js"></script>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
-    --navy:      #1a2535;
-    --navy2:     #162030;
-    --teal:      #2a9d8f;
-    --teal2:     #21867a;
-    --teal-glow: #5abfb3;
-    --font-head: 'Big Shoulders Display', system-ui, sans-serif;
-    --font-body: 'Instrument Sans', system-ui, sans-serif;
-    --font-law: Georgia, 'Times New Roman', serif;
+    --navy:   #1a2535;
+    --ink:    #1a2535;
+    --ink-2:  #4d596d;
+    --ink-3:  #808a9b;
+    --paper:  #ffffff;
+    --shell:  #f4f6f5;
+    --rule:   #e3e7e6;
+    --teal:   #1b8175;
+    --teal-l: #2a9d8f;
+    --teal-g: #5abfb3;
+    --sans:  'Instrument Sans', system-ui, sans-serif;
+    --serif: 'Source Serif 4', Georgia, serif;
   }
-  html, body {
-    height: 100%; font-family: var(--font-body);
-    background: var(--navy2); color: white;
-    -webkit-font-smoothing: antialiased;
+  body { font-family: var(--sans); background: var(--paper); color: var(--ink); -webkit-font-smoothing: antialiased; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 32px; }
+
+  .top { background: var(--navy); color: white; }
+  .top .bar { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+  .brand { display: flex; align-items: center; gap: 11px; font-weight: 600; font-size: 18px; }
+  .mark {
+    width: 28px; height: 28px; border-radius: 8px; background: var(--teal-l); color: white;
+    display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 700;
+  }
+  .top nav { font-size: 14px; color: rgba(255,255,255,0.62); }
+
+  .hero { padding: 62px 0 72px; display: grid; grid-template-columns: 1fr 1.02fr; gap: 52px; align-items: start; }
+  .hero-copy h1 {
+    font-size: clamp(31px, 3.8vw, 42px); font-weight: 600; line-height: 1.16; letter-spacing: -0.9px;
+    color: white; margin-bottom: 20px;
+  }
+  .hero-copy h1 span { color: var(--teal-g); }
+  .lede { font-size: 17px; line-height: 1.65; color: rgba(255,255,255,0.74); margin-bottom: 26px; }
+  .cover { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 26px; }
+  .cover div {
+    font-size: 13px; color: rgba(255,255,255,0.82); padding: 6px 11px;
+    border: 1px solid rgba(255,255,255,0.16); background: rgba(255,255,255,0.04); border-radius: 999px;
   }
 
-  .page {
-    min-height: 100vh;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    padding: 60px 24px;
-    position: relative; overflow: hidden;
+  .form { display: flex; gap: 10px; }
+  .field {
+    flex: 1; padding: 13px 15px; font-family: var(--sans); font-size: 15px; color: white;
+    background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 8px; outline: none;
   }
-
-  .bg { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
-  .bg-orb { position: absolute; border-radius: 50%; background: radial-gradient(circle, rgba(42,157,143,0.11) 0%, transparent 68%); }
-  .bg-orb.a { width: 900px; height: 900px; top: -300px; left: 50%; transform: translateX(-50%); }
-  .bg-orb.b { width: 500px; height: 500px; bottom: -180px; right: -100px; opacity: 0.6; }
-  .bg-orb.c { width: 320px; height: 320px; top: 15%; left: -60px; background: radial-gradient(circle, rgba(58,124,165,0.08) 0%, transparent 70%); }
-  .bg-grid {
-    position: absolute; inset: 0;
-    background-image: linear-gradient(rgba(255,255,255,0.022) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.022) 1px, transparent 1px);
-    background-size: 56px 56px;
-    mask-image: radial-gradient(ellipse 70% 55% at 50% 10%, black 0%, transparent 80%);
+  .field::placeholder { color: rgba(255,255,255,0.42); }
+  .field:focus { border-color: var(--teal-g); background: rgba(255,255,255,0.11); }
+  .btn {
+    padding: 13px 20px; border: none; border-radius: 8px; background: var(--teal);
+    color: white; font-family: var(--sans); font-size: 15px; font-weight: 600; cursor: pointer;
   }
-
-  .content {
-    position: relative; z-index: 1;
-    text-align: center; max-width: 660px;
-    animation: rise 0.8s ease both;
-  }
-  @keyframes rise { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
-  .brand { display: inline-flex; align-items: center; gap: 12px; margin-bottom: 40px; }
-  .logo-mark {
-    width: 56px; height: 56px; border-radius: 14px;
-    background: linear-gradient(135deg, #2a9d8f, #21867a);
-    display: flex; align-items: center; justify-content: center;
-    font-family: var(--font-head); font-weight: 900; font-size: 30px; color: white;
-    box-shadow: 0 0 0 1px rgba(42,157,143,0.35), 0 6px 20px rgba(42,157,143,0.25);
-  }
-  .logo-text { font-family: var(--font-head); font-weight: 800; font-size: 34px; color: white; letter-spacing: -0.5px; }
-  .logo-text span { color: var(--teal-glow); }
-
-  h1 {
-    font-family: var(--font-head);
-    font-size: clamp(44px, 8vw, 72px);
-    font-weight: 900; line-height: 1.05; letter-spacing: -2px;
-    color: white; margin-bottom: 18px;
-    animation: rise 0.8s 0.1s ease both;
-  }
-  h1 .accent { color: var(--teal-glow); }
-
-  .tagline {
-    font-size: clamp(15px, 2vw, 17px); font-weight: 500;
-    color: rgba(255,255,255,0.45); margin-bottom: 40px; line-height: 1.6;
-    animation: rise 0.8s 0.15s ease both;
-  }
-
-  .answer {
-    text-align: left; margin: 0 auto 40px; max-width: 620px;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.09);
-    border-left: 3px solid var(--teal);
-    border-radius: 12px; padding: 22px 24px;
-    animation: rise 0.8s 0.18s ease both;
-  }
-  .answer-ask { font-size: 13px; color: rgba(255,255,255,0.35); margin-bottom: 14px; }
-  .answer-ask strong { color: rgba(255,255,255,0.72); font-weight: 500; }
-  .answer-label {
-    font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase;
-    color: var(--teal-glow); margin-bottom: 8px;
-  }
-  .answer-statement { font-size: 14px; line-height: 1.6; color: rgba(255,255,255,0.72); margin-bottom: 6px; }
-  .answer-meta { font-size: 12px; line-height: 1.6; color: rgba(255,255,255,0.34); margin-bottom: 16px; }
-  .answer-quote {
-    font-family: var(--font-law); font-size: 15px; line-height: 1.65;
-    color: rgba(255,255,255,0.9);
-    border-left: 2px solid rgba(42,157,143,0.5);
-    padding: 2px 0 2px 16px;
-  }
-  .answer-quote span { display: block; }
-  .answer-quote span + span { margin-top: 8px; }
-  .answer-defined { font-family: var(--font-body); font-size: 11px; color: rgba(255,255,255,0.3); margin-top: 10px; }
-  .answer-cite { font-size: 12px; color: rgba(255,255,255,0.34); margin-top: 12px; }
-
-  .form-wrap { max-width: 380px; margin: 0 auto; animation: rise 0.8s 0.2s ease both; }
-  .form-field {
-    width: 100%; padding: 14px 16px;
-    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 9px; font-size: 14px; color: white; font-family: var(--font-body);
-    outline: none; transition: border-color 0.2s, background 0.2s; margin-bottom: 10px;
-  }
-  .form-field:focus { border-color: var(--teal); background: rgba(255,255,255,0.08); }
-  .form-field::placeholder { color: rgba(255,255,255,0.28); }
-  .form-btn {
-    width: 100%; padding: 15px; border-radius: 9px;
-    background: var(--teal); color: white; border: none;
-    font-size: 15px; font-weight: 700; font-family: var(--font-body);
-    cursor: pointer; transition: all 0.2s;
-    box-shadow: 0 4px 20px rgba(42,157,143,0.35);
-  }
-  .form-btn:hover { background: var(--teal2); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(42,157,143,0.45); }
-  .form-btn:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
-  .form-note { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 12px; line-height: 1.6; }
-  .form-note a { color: var(--teal-glow); text-decoration: underline; text-underline-offset: 2px; }
-  .form-note a:hover { color: white; }
-  .error-msg { font-size: 12px; color: #f87171; margin-bottom: 8px; display: none; }
+  .btn:hover { background: #15695f; }
+  .form-note { margin-top: 13px; font-size: 13px; line-height: 1.6; color: rgba(255,255,255,0.55); }
+  .form-note a { color: var(--teal-g); text-underline-offset: 2px; }
+  .error-msg { font-size: 12px; color: #f87171; margin-top: 8px; display: none; }
 
   .success {
     display: none; text-align: center; padding: 28px 24px;
-    background: rgba(42,157,143,0.09); border: 1px solid rgba(42,157,143,0.22);
-    border-radius: 14px; max-width: 380px; margin: 0 auto;
+    color: var(--ink); background: var(--paper); border: 1px solid var(--rule);
+    border-radius: 12px; box-shadow: 0 18px 44px rgba(9,15,25,0.28);
   }
-  .success-icon { font-size: 32px; margin-bottom: 10px; }
-  .success h3 { font-family: var(--font-head); font-size: 24px; font-weight: 800; color: var(--teal-glow); margin-bottom: 8px; }
-  .success p { font-size: 14px; color: rgba(255,255,255,0.45); line-height: 1.65; }
+  .success h3 { font-family: var(--serif); font-size: 24px; font-weight: 600; color: var(--teal); margin-bottom: 8px; }
+  .success p { font-size: 14px; color: var(--ink-2); line-height: 1.65; }
 
-  footer {
-    position: relative; z-index: 1; margin-top: 48px; text-align: center;
-    font-size: 12px; color: rgba(255,255,255,0.2);
-    animation: rise 0.8s 0.3s ease both;
+  .card { color: var(--ink); background: var(--paper); border-radius: 12px; border: 1px solid var(--rule); overflow: hidden; }
+  .card.lift { border: none; box-shadow: 0 18px 44px rgba(9,15,25,0.28); }
+  .card-head {
+    padding: 14px 20px; border-bottom: 1px solid var(--rule); background: var(--shell);
+    font-size: 13.5px; line-height: 1.5; color: var(--ink-2);
   }
-  footer a { color: var(--teal-glow); text-decoration: none; }
-  footer a:hover { color: white; }
+  .card-head strong { color: var(--ink); font-weight: 600; }
+  .card-body { padding: 20px; }
+  .tag {
+    display: inline-block; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--teal); background: rgba(27,129,117,0.08);
+    border-radius: 4px; padding: 4px 8px; margin-bottom: 13px;
+  }
+  .statement { font-size: 16px; line-height: 1.55; margin-bottom: 7px; }
+  .statement b { font-weight: 600; }
+  .meta { font-size: 12.5px; line-height: 1.62; color: var(--ink-3); margin-bottom: 16px; }
+  blockquote {
+    font-family: var(--serif); font-size: 15.5px; line-height: 1.66; color: var(--ink);
+    border-left: 2px solid var(--teal-l); padding-left: 17px;
+  }
+  blockquote span { display: block; }
+  blockquote span + span { margin-top: 9px; }
+  .defined { font-size: 12px; color: var(--ink-3); margin-top: 13px; line-height: 1.55; }
+  .cite { font-size: 12px; line-height: 1.6; color: var(--ink-2); margin-top: 16px; padding-top: 13px; border-top: 1px solid var(--rule); }
+
+  table.calc { width: 100%; border-collapse: collapse; font-size: 13px; font-variant-numeric: tabular-nums; }
+  table.calc th {
+    text-align: right; font-weight: 600; font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase;
+    color: var(--ink-3); padding: 0 0 7px 14px; border-bottom: 1px solid var(--rule);
+  }
+  table.calc th:first-child, table.calc td:first-child { text-align: left; padding-left: 0; }
+  table.calc td { text-align: right; padding: 8px 0 8px 14px; border-bottom: 1px solid var(--rule); color: var(--ink-2); }
+  table.calc td:first-child { color: var(--ink); font-weight: 500; }
+  table.calc tr.total td { border-bottom: none; font-weight: 600; color: var(--ink); }
+
+  .band { padding: 62px 0; }
+  .band + .band { padding-top: 0; }
+  .band-label {
+    font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ink-3); margin-bottom: 12px;
+  }
+  .band-note { font-size: 14.5px; line-height: 1.62; color: var(--ink-2); max-width: 44em; margin-bottom: 28px; }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .four { display: grid; grid-template-columns: repeat(4, 1fr); gap: 34px; }
+  .four h3 { font-size: 16px; font-weight: 600; margin-bottom: 9px; }
+  .four h3 .num { color: var(--teal); font-variant-numeric: tabular-nums; margin-right: 8px; }
+  .four p { font-size: 14.5px; line-height: 1.62; color: var(--ink-2); }
+
+  .strip { background: var(--shell); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); padding: 30px 0; }
+  .strip p { font-family: var(--serif); font-size: 18px; line-height: 1.55; color: var(--ink); max-width: 46em; }
+
+  .secure { background: var(--navy); color: white; padding: 52px 0; }
+  .secure .band-label { color: rgba(255,255,255,0.5); }
+  .secure h3 { font-size: 15px; font-weight: 600; margin-bottom: 8px; color: white; }
+  .secure p { font-size: 14px; line-height: 1.6; color: rgba(255,255,255,0.66); }
+
+  footer { padding: 28px 0 48px; font-size: 13px; color: var(--ink-3); }
+  footer a { color: var(--ink-2); text-decoration: none; }
+  footer a:hover { color: var(--teal); }
+
+  .abbr { display: none; }
+
+  @media (max-width: 640px) {
+    table.calc { font-size: 11.5px; }
+    table.calc th { font-size: 10px; padding-left: 9px; }
+    table.calc td { padding-left: 9px; }
+    .full { display: none; }
+    .abbr { display: inline; }
+  }
+
+  @media (max-width: 860px) {
+    .hero { grid-template-columns: 1fr; gap: 40px; padding: 48px 0 56px; }
+    .four, .two { grid-template-columns: 1fr; gap: 28px; }
+    .form { flex-direction: column; }
+    .top nav { display: none; }
+  }
 </style>
 </head>
 <body>
 
-<div class="page">
-  <div class="bg">
-    <div class="bg-orb a"></div>
-    <div class="bg-orb b"></div>
-    <div class="bg-orb c"></div>
-    <div class="bg-grid"></div>
+<div class="top">
+  <div class="wrap bar">
+    <div class="brand"><span class="mark">T</span> TobyAI</div>
+    <nav>Australian tax and employment compliance</nav>
   </div>
-
-  <div class="content">
-    <div class="brand">
-      <div class="logo-mark">T</div>
-      <span class="logo-text">Toby<span>AI</span></span>
-    </div>
-
-    <h1>Compliance answers, with the <span class="accent">law attached.</span></h1>
-
-    <p class="tagline">Australian tax and employment compliance for businesses, bookkeepers and accountants. Every figure is computed in auditable code, never written by a language model, and every answer arrives with the provision it rests on and the date that provision was in force.</p>
-
-    <div class="answer">
-      <p class="answer-ask">You ask: <strong>GST registration turnover threshold</strong></p>
-      <p class="answer-label">Stated answer</p>
-      <p class="answer-statement">The stated treatment is set out in Commonwealth legislation.</p>
-      <p class="answer-meta">Answered under current law because the question did not state a period. Compilation in force from 1 January 2026.</p>
-      <blockquote class="answer-quote">
-        <span>(1) You have a GST turnover that meets a particular *turnover threshold if:</span>
-        <span>(a) your *current GST turnover is at or above the turnover threshold, and the Commissioner is not satisfied that your *projected GST turnover is below the turnover threshold; or</span>
-        <span>(b) your projected GST turnover is at or above the turnover threshold.</span>
-      </blockquote>
-      <p class="answer-defined">An asterisk marks a term the Act defines. Quoted here to subsection (1); the provision continues.</p>
-      <p class="answer-cite">A New Tax System (Goods and Services Tax) Act 1999, section 188-10, Federal Register of Legislation, CC BY 4.0</p>
-    </div>
-
-    <div class="form-wrap">
-      <div id="signup-form">
-        <input type="email" id="f-email" class="form-field" placeholder="Email address">
-        <div class="error-msg" id="form-error">Please enter a valid email address.</div>
-        <button class="form-btn" id="form-btn" onclick="submitForm()">Join the Waitlist →</button>
-        <p class="form-note">No spam, and nothing but early access. Your email is recorded in Google Sheets until our own Australian service is running, which the <a href="/privacy.html">privacy policy</a> sets out.</p>
+  <div class="wrap hero">
+    <div class="hero-copy">
+      <h1>Federal and state law,<br><span>answered in one place.</span></h1>
+      <p class="lede">
+        Income tax, GST, payroll tax and Fair Work awards sit in different Acts, on different
+        websites, run by different regulators. Toby holds them together and answers from them,
+        with every figure computed in code you can audit rather than guessed by AI.
+      </p>
+      <div class="cover">
+        <div>Income tax</div>
+        <div>GST and BAS</div>
+        <div>PAYG withholding</div>
+        <div>Payroll tax</div>
+        <div>Workers compensation and WHS</div>
+        <div>Fair Work awards</div>
       </div>
-
+      <div id="signup-form">
+        <div class="form">
+          <input class="field" type="email" id="f-email" placeholder="you@firm.com.au">
+          <button class="btn" id="form-btn" onclick="submitForm()">Request early access</button>
+        </div>
+        <div class="error-msg" id="form-error">Please enter a valid email address.</div>
+        <p class="form-note">
+          One email when access opens, nothing else. Signups are held in Google Sheets until our own
+          Australian service is running, as the <a href="/privacy.html">privacy policy</a> sets out.
+        </p>
+      </div>
       <div class="success" id="success-msg">
-        <div class="success-icon">✅</div>
         <h3>You're on the list.</h3>
         <p>We'll be in touch when early access opens.</p>
       </div>
     </div>
-  </div>
 
+    <div class="card lift">
+      <div class="card-head">Asked: <strong>Payroll tax for the year ending 30 June 2026, with staff in Queensland, New South Wales and Victoria</strong></div>
+      <div class="card-body">
+        <span class="tag">Computed answer</span>
+        <p class="statement">Payroll tax of <b>$338,410.23</b> is payable across the three jurisdictions on $7,450,000 of Australian taxable wages.</p>
+        <p class="meta">
+          Each state's threshold is apportioned to its share of Australia-wide wages, which is why
+          two of the three thresholds fall well below their headline figure.
+        </p>
+        <table class="calc">
+          <thead>
+            <tr><th>Jurisdiction</th><th>Wages</th><th>Threshold</th><th>Rate</th><th>Payable</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><span class="full">Queensland</span><span class="abbr">QLD</span></td><td>$2,400,000</td><td>$418,791.95</td><td>4.95%</td><td>$98,069.80</td></tr>
+            <tr><td><span class="full">New South Wales</span><span class="abbr">NSW</span></td><td>$1,650,000</td><td>$265,771.81</td><td>5.45%</td><td>$75,440.44</td></tr>
+            <tr><td><span class="full">Victoria</span><span class="abbr">VIC</span></td><td>$3,400,000</td><td><span class="full">nil, phased out</span><span class="abbr">nil</span></td><td>4.85%</td><td>$164,900.00</td></tr>
+            <tr class="total"><td>Total</td><td>$7,450,000</td><td></td><td></td><td>$338,410.23</td></tr>
+          </tbody>
+        </table>
+        <p class="defined">
+          A worked example on illustrative wages, computed by the production engine from its attested
+          schedule. Grouping and regional-employer status are judgements, so Toby requires a person
+          to record them and refuses to compute without them. Shown to the cent; the audit record
+          keeps full precision and a fingerprint of the assessment.
+        </p>
+        <p class="cite">
+          Figures held from Queensland Revenue Office, Revenue NSW and the Victorian State Revenue
+          Office, retrieved 19 August 2026, attested for this financial year on 23 August 2026.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="strip">
+  <div class="wrap">
+    <p>The rules you need are spread across Commonwealth Acts, state revenue offices and the Fair Work Commission. Toby is one place to ask, and every answer names the source it came from.</p>
+  </div>
+</div>
+
+<div class="wrap band" style="padding-top: 62px;">
+  <p class="band-label">Two more answers, unedited</p>
+  <p class="band-note">
+    Statutory questions are answered from the provision itself, quoted verbatim and dated, so you can
+    check Toby rather than trust it.
+  </p>
+  <div class="two">
+    <div class="card">
+      <div class="card-head">Asked: <strong>Annual leave entitlement under the National Employment Standards</strong></div>
+      <div class="card-body">
+        <span class="tag">Stated answer</span>
+        <p class="statement">Four weeks of paid annual leave for each year of service, or five for a shiftworker.</p>
+        <p class="meta">Answered under current law, because the question did not state a period. Compilation in force from 7 July 2026.</p>
+        <blockquote>
+          <span>(1) For each year of service with an employer (other than periods of employment as a
+            casual employee of the employer), an employee is entitled to:</span>
+          <span>(a) 4 weeks of paid annual leave; or</span>
+          <span>(b) 5 weeks of paid annual leave, if: (i) a modern award applies to the employee and
+            defines or describes the employee as a shiftworker for the purposes of the National
+            Employment Standards ...</span>
+        </blockquote>
+        <p class="defined">Quoted to the start of subsection (1)(b); the provision continues.</p>
+        <p class="cite">Fair Work Act 2009, section 87. Federal Register of Legislation, CC BY 4.0.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">Asked: <strong>GST registration turnover threshold</strong></div>
+      <div class="card-body">
+        <span class="tag">Stated answer</span>
+        <p class="statement">Whether you meet the registration turnover threshold turns on both your current and your projected GST turnover.</p>
+        <p class="meta">Answered under current law, because the question did not state a period. Compilation in force from 1 January 2026.</p>
+        <blockquote>
+          <span>(1) You have a GST turnover that meets a particular *turnover threshold if:</span>
+          <span>(a) your *current GST turnover is at or above the turnover threshold, and the
+            Commissioner is not satisfied that your *projected GST turnover is below the turnover
+            threshold; or</span>
+          <span>(b) your projected GST turnover is at or above the turnover threshold.</span>
+        </blockquote>
+        <p class="defined">An asterisk marks a term the Act defines. Quoted to the end of subsection (1); the provision continues.</p>
+        <p class="cite">A New Tax System (Goods and Services Tax) Act 1999, section 188-10. Federal Register of Legislation, CC BY 4.0.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap band">
+  <p class="band-label">How it holds up</p>
+  <div class="four">
+    <div>
+      <h3><span class="num">01</span>Computed, not guessed</h3>
+      <p>Every figure comes from versioned data and code that can be read and audited. AI explains an
+         answer and never originates a number.</p>
+    </div>
+    <div>
+      <h3><span class="num">02</span>Federal and state together</h3>
+      <p>Commonwealth Acts, state revenue offices and the Fair Work Commission, kept current and
+         asked as one body of law rather than one site at a time.</p>
+    </div>
+    <div>
+      <h3><span class="num">03</span>Answered as at a date</h3>
+      <p>Ask about a past period and Toby answers on the law in force then, and names the compilation
+         it used.</p>
+    </div>
+    <div>
+      <h3><span class="num">04</span>Checked against your numbers</h3>
+      <p>At early access, Toby reads your accounting data inside our Australian boundary to test the
+         figures you are about to lodge.</p>
+    </div>
+  </div>
+</div>
+
+<div class="secure">
+  <div class="wrap">
+    <p class="band-label">Where your data sits</p>
+    <p class="band-note" style="color: rgba(255,255,255,0.66);">
+      Four commitments early access ships on, each of them a design decision rather than a policy
+      promise.
+    </p>
+    <div class="four">
+      <div>
+        <h3>No PII to AI</h3>
+        <p>Names, tax file numbers, bank details and salaries never reach an AI provider. Identifiers
+           are hashed at the boundary.</p>
+      </div>
+      <div>
+        <h3>Australian residency</h3>
+        <p>Your compliance data is held and processed in Australia, in Sydney, not shipped offshore
+           for convenience.</p>
+      </div>
+      <div>
+        <h3>Enforced multi-factor</h3>
+        <p>Sign-in requires a second factor, and access to a client's data is scoped to the people
+           you authorise.</p>
+      </div>
+      <div>
+        <h3>Auditable by design</h3>
+        <p>Each answer records the schedule version, the source it came from and a fingerprint of the
+           assessment, so a file note can be reconstructed later.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
   <footer>
-    <a href="mailto:hello@tobyai.io">hello@tobyai.io</a>
-    &nbsp;·&nbsp; <a href="/privacy.html">Privacy</a>
-    &nbsp;·&nbsp; <a href="/terms.html">Terms</a>
-    &nbsp;·&nbsp; © 2026 TobyAI
+    <a href="mailto:hello@tobyai.io">hello@tobyai.io</a> &nbsp;·&nbsp;
+    <a href="/privacy.html">Privacy</a> &nbsp;·&nbsp;
+    <a href="/terms.html">Terms</a> &nbsp;·&nbsp;
+    © 2026 TobyAI
   </footer>
 </div>
 
