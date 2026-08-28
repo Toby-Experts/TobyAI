@@ -3,11 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TobyAI</title>
-<meta name="description" content="TobyAI is coming soon. Join the waitlist.">
-<meta name="robots" content="noindex">
+<title>TobyAI, Australian compliance answers with the law attached</title>
+<meta name="description" content="Australian tax and employment compliance for businesses, bookkeepers and accountants. Every answer is computed in auditable code and shown with the provision it rests on.">
 <meta property="og:title" content="TobyAI">
-<meta property="og:description" content="Coming soon. Join the waitlist.">
+<meta property="og:description" content="Australian compliance answers, quoted from the law they rest on.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://tobyai.io">
 <meta property="og:image" content="https://tobyai.io/toby_logo_1024.png">
@@ -16,7 +15,7 @@
 <meta property="og:image:alt" content="TobyAI logo">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="TobyAI">
-<meta name="twitter:description" content="Coming soon. Join the waitlist.">
+<meta name="twitter:description" content="Australian compliance answers, quoted from the law they rest on.">
 <meta name="twitter:image" content="https://tobyai.io/toby_logo_1024.png">
 <meta name="twitter:image:alt" content="TobyAI logo">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,6 +32,7 @@
     --teal-glow: #5abfb3;
     --font-head: 'Big Shoulders Display', system-ui, sans-serif;
     --font-body: 'Instrument Sans', system-ui, sans-serif;
+    --font-law: Georgia, 'Times New Roman', serif;
   }
   html, body {
     height: 100%; font-family: var(--font-body);
@@ -62,7 +62,7 @@
 
   .content {
     position: relative; z-index: 1;
-    text-align: center; max-width: 460px;
+    text-align: center; max-width: 660px;
     animation: rise 0.8s ease both;
   }
   @keyframes rise { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
@@ -92,6 +92,33 @@
     color: rgba(255,255,255,0.45); margin-bottom: 40px; line-height: 1.6;
     animation: rise 0.8s 0.15s ease both;
   }
+
+  .answer {
+    text-align: left; margin: 0 auto 40px; max-width: 620px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.09);
+    border-left: 3px solid var(--teal);
+    border-radius: 12px; padding: 22px 24px;
+    animation: rise 0.8s 0.18s ease both;
+  }
+  .answer-ask { font-size: 13px; color: rgba(255,255,255,0.35); margin-bottom: 14px; }
+  .answer-ask strong { color: rgba(255,255,255,0.72); font-weight: 500; }
+  .answer-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase;
+    color: var(--teal-glow); margin-bottom: 8px;
+  }
+  .answer-statement { font-size: 14px; line-height: 1.6; color: rgba(255,255,255,0.72); margin-bottom: 6px; }
+  .answer-meta { font-size: 12px; line-height: 1.6; color: rgba(255,255,255,0.34); margin-bottom: 16px; }
+  .answer-quote {
+    font-family: var(--font-law); font-size: 15px; line-height: 1.65;
+    color: rgba(255,255,255,0.9);
+    border-left: 2px solid rgba(42,157,143,0.5);
+    padding: 2px 0 2px 16px;
+  }
+  .answer-quote span { display: block; }
+  .answer-quote span + span { margin-top: 8px; }
+  .answer-defined { font-family: var(--font-body); font-size: 11px; color: rgba(255,255,255,0.3); margin-top: 10px; }
+  .answer-cite { font-size: 12px; color: rgba(255,255,255,0.34); margin-top: 12px; }
 
   .form-wrap { max-width: 380px; margin: 0 auto; animation: rise 0.8s 0.2s ease both; }
   .form-field {
@@ -148,16 +175,30 @@
       <span class="logo-text">Toby<span>AI</span></span>
     </div>
 
-    <h1>Coming <span class="accent">soon.</span></h1>
+    <h1>Compliance answers, with the <span class="accent">law attached.</span></h1>
 
-    <p class="tagline">We're building something. Join the waitlist to be first to know.</p>
+    <p class="tagline">Australian tax and employment compliance for businesses, bookkeepers and accountants. Every figure is computed in auditable code, never written by a language model, and every answer arrives with the provision it rests on and the date that provision was in force.</p>
+
+    <div class="answer">
+      <p class="answer-ask">You ask: <strong>GST registration turnover threshold</strong></p>
+      <p class="answer-label">Stated answer</p>
+      <p class="answer-statement">The stated treatment is set out in Commonwealth legislation.</p>
+      <p class="answer-meta">Answered under current law because the question did not state a period. Compilation in force from 1 January 2026.</p>
+      <blockquote class="answer-quote">
+        <span>(1) You have a GST turnover that meets a particular *turnover threshold if:</span>
+        <span>(a) your *current GST turnover is at or above the turnover threshold, and the Commissioner is not satisfied that your *projected GST turnover is below the turnover threshold; or</span>
+        <span>(b) your projected GST turnover is at or above the turnover threshold.</span>
+      </blockquote>
+      <p class="answer-defined">An asterisk marks a term the Act defines. Quoted here to subsection (1); the provision continues.</p>
+      <p class="answer-cite">A New Tax System (Goods and Services Tax) Act 1999, section 188-10, Federal Register of Legislation, CC BY 4.0</p>
+    </div>
 
     <div class="form-wrap">
       <div id="signup-form">
         <input type="email" id="f-email" class="form-field" placeholder="Email address">
         <div class="error-msg" id="form-error">Please enter a valid email address.</div>
         <button class="form-btn" id="form-btn" onclick="submitForm()">Join the Waitlist →</button>
-        <p class="form-note">No spam. We'll reach out when we're ready.</p>
+        <p class="form-note">No spam, and nothing but early access. Your email is recorded in Google Sheets until our own Australian service is running, which the <a href="/privacy.html">privacy policy</a> sets out.</p>
       </div>
 
       <div class="success" id="success-msg">
