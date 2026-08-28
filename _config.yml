@@ -1,5 +1,4 @@
 # GitHub Pages (Jekyll) config.
-# Keep the Azure Functions backend out of the published static site.
+# Keep repository documentation out of the published static site.
 exclude:
-  - api
   - README.md
