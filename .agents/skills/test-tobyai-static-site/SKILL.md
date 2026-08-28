@@ -17,11 +17,12 @@ Reuse an already running server on that port rather than starting a second one.
 
 ## Safety: the waitlist form posts to a live endpoint
 
-`index.html` submits to a Google Apps Script `SCRIPT_URL` that writes to the owner's real
-waitlist spreadsheet. **Never submit a value containing `@`.** The client-side guard is
-`if (!email || !email.includes('@'))`, so the only safe submissions are the empty field and a
-malformed string such as `abc`. Stop at the validation error; the success panel can only be
-reached by writing to the real sheet.
+`index.html` posts to the Sydney API Gateway endpoint
+`https://pc24esfy6h.execute-api.ap-southeast-2.amazonaws.com/waitlist`. A valid submission writes
+a real row to the production `tobyai-waitlist` DynamoDB table. **Never submit a value containing
+`@`.** The client-side guard is `if (!email || !email.includes('@'))`, so the only safe
+submissions are the empty field and a malformed string such as `abc`. Stop at the validation
+error; the success panel can only be reached by writing to the production table.
 
 Useful ids: `#f-email`, `#form-error` (`Please enter a valid email address.`), `#form-btn`,
 `#signup-form`, `#success-msg`. Confirm nothing was sent with:
