@@ -366,7 +366,7 @@
 </div>
 
 <script>
-  var SCRIPT_URL = 'https://pc24esfy6h.execute-api.ap-southeast-2.amazonaws.com/waitlist';
+  var ENDPOINT_URL = 'https://pc24esfy6h.execute-api.ap-southeast-2.amazonaws.com/waitlist';
 
   function submitForm() {
     var email = document.getElementById('f-email').value.trim();
@@ -377,7 +377,7 @@
     }
     var btn = document.getElementById('form-btn');
     btn.disabled = true; btn.textContent = 'Sending…';
-    fetch(SCRIPT_URL, {
+    fetch(ENDPOINT_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
