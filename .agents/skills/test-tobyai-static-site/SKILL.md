@@ -28,7 +28,7 @@ Useful ids: `#f-email`, `#form-error` (`Please enter a valid email address.`), `
 `#signup-form`, `#success-msg`. Confirm nothing was sent with:
 
 ```js
-performance.getEntriesByType('resource').map(r => r.name).filter(n => /script\.google|macros/.test(n))
+performance.getEntriesByType('resource').map(r => r.name).filter(n => /execute-api|waitlist/.test(n))
 ```
 
 ## Hitting exact CSS viewport widths
