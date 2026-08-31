@@ -21,65 +21,68 @@
 <meta name="twitter:image:alt" content="TobyAI logo">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <script defer data-domain="tobyai.io" src="https://plausible.io/js/script.js"></script>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
-    --navy:   #1a2535;
-    --ink:    #1a2535;
-    --ink-2:  #4d596d;
-    --ink-3:  #808a9b;
+    --navy:   #16202f;
+    --ink:    #16202f;
+    --ink-2:  #4d5a6e;
+    --ink-3:  #78849a;
     --paper:  #ffffff;
-    --shell:  #f4f6f5;
-    --rule:   #e3e7e6;
-    --teal:   #1b8175;
-    --teal-l: #2a9d8f;
-    --teal-g: #5abfb3;
+    --shell:  #f5f8f7;
+    --rule:   #e2e8e6;
+    --teal:   #0e7f76;
+    --teal-l: #0e7f76;
+    --teal-g: #0e7f76;
+    --teal-display: #0d9488;
+    --teal-d: #0b6660;
     --sans:  'Instrument Sans', system-ui, sans-serif;
     --serif: 'Source Serif 4', Georgia, serif;
+    --mono:  'IBM Plex Mono', ui-monospace, monospace;
   }
   body { font-family: var(--sans); background: var(--paper); color: var(--ink); -webkit-font-smoothing: antialiased; }
   .wrap { max-width: 1040px; margin: 0 auto; padding: 0 32px; }
 
-  .top { background: var(--navy); color: white; }
+  .top { background: var(--paper); color: var(--ink); }
   .top .bar { display: flex; align-items: center; justify-content: space-between; height: 72px; }
   .brand { display: flex; align-items: center; gap: 11px; font-weight: 600; font-size: 18px; }
   .mark {
     width: 28px; height: 28px; border-radius: 8px; background: var(--teal-l); color: white;
     display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 700;
   }
-  .top nav { font-size: 14px; color: rgba(255,255,255,0.62); }
+  .top nav { font-size: 14px; color: var(--ink-3); }
 
   .hero { padding: 62px 0 72px; display: grid; grid-template-columns: 1fr 1.02fr; gap: 52px; align-items: start; }
   .hero-copy h1 {
     font-size: clamp(31px, 3.8vw, 42px); font-weight: 600; line-height: 1.16; letter-spacing: -0.9px;
-    color: white; margin-bottom: 20px;
+    color: var(--ink); margin-bottom: 20px;
   }
-  .hero-copy h1 span { color: var(--teal-g); }
-  .eyebrow { font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--teal-g); margin-bottom: 14px; }
-  .lede { font-size: 17px; line-height: 1.65; color: rgba(255,255,255,0.74); margin-bottom: 26px; }
+  .hero-copy h1 span { color: var(--teal-display); }
+  .eyebrow { font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--teal); margin-bottom: 14px; }
+  .lede { font-size: 17px; line-height: 1.65; color: var(--ink-2); margin-bottom: 26px; }
   .cover { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 26px; }
   .cover div {
-    font-size: 13px; color: rgba(255,255,255,0.82); padding: 6px 11px;
-    border: 1px solid rgba(255,255,255,0.16); background: rgba(255,255,255,0.04); border-radius: 999px;
+    font-size: 13px; color: var(--ink-2); padding: 6px 11px;
+    border: 1px solid var(--rule); background: var(--paper); border-radius: 999px;
   }
 
   .form { display: flex; gap: 10px; }
   .field {
-    flex: 1; padding: 13px 15px; font-family: var(--sans); font-size: 15px; color: white;
-    background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.2);
+    flex: 1; padding: 13px 15px; font-family: var(--sans); font-size: 15px; color: var(--ink);
+    background: var(--paper); border: 1px solid var(--rule);
     border-radius: 8px; outline: none;
   }
-  .field::placeholder { color: rgba(255,255,255,0.42); }
-  .field:focus { border-color: var(--teal-g); background: rgba(255,255,255,0.11); }
+  .field::placeholder { color: var(--ink-3); }
+  .field:focus { border-color: var(--teal); background: var(--paper); }
   .btn {
     padding: 13px 20px; border: none; border-radius: 8px; background: var(--teal);
     color: white; font-family: var(--sans); font-size: 15px; font-weight: 600; cursor: pointer;
   }
-  .btn:hover { background: #15695f; }
-  .form-note { margin-top: 13px; font-size: 13px; line-height: 1.6; color: rgba(255,255,255,0.55); }
-  .form-note a { color: var(--teal-g); text-underline-offset: 2px; }
+  .btn:hover { background: var(--teal-d); }
+  .form-note { margin-top: 13px; font-size: 13px; line-height: 1.6; color: var(--ink-3); }
+  .form-note a { color: var(--teal); text-underline-offset: 2px; }
   .error-msg { font-size: 12px; color: #f87171; margin-top: 8px; display: none; }
   .honeypot { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
 
@@ -92,7 +95,7 @@
   .success p { font-size: 14px; color: var(--ink-2); line-height: 1.65; }
 
   .card { color: var(--ink); background: var(--paper); border-radius: 12px; border: 1px solid var(--rule); overflow: hidden; }
-  .card.lift { border: none; box-shadow: 0 18px 44px rgba(9,15,25,0.28); }
+  .card.lift { border: none; box-shadow: 0 18px 44px rgba(9,15,25,0.13); }
   .card-head {
     padding: 14px 20px; border-bottom: 1px solid var(--rule); background: var(--shell);
     font-size: 13.5px; line-height: 1.5; color: var(--ink-2);
@@ -101,11 +104,11 @@
   .card-body { padding: 20px; }
   .tag {
     display: inline-block; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em;
-    text-transform: uppercase; color: var(--teal); background: rgba(27,129,117,0.08);
+    text-transform: uppercase; color: var(--teal); background: rgba(14,127,118,0.09);
     border-radius: 4px; padding: 4px 8px; margin-bottom: 13px;
   }
   .statement { font-size: 16px; line-height: 1.55; margin-bottom: 7px; }
-  .statement b { font-weight: 600; }
+  .statement b { font-family: var(--mono); font-weight: 600; font-variant-numeric: tabular-nums; }
   .meta { font-size: 12.5px; line-height: 1.62; color: var(--ink-3); margin-bottom: 16px; }
   blockquote {
     font-family: var(--serif); font-size: 15.5px; line-height: 1.66; color: var(--ink);
@@ -140,6 +143,13 @@
   .four h3 .num { color: var(--teal); font-variant-numeric: tabular-nums; margin-right: 8px; }
   .four p { font-size: 14.5px; line-height: 1.62; color: var(--ink-2); }
 
+  .asks h3 { margin-bottom: 13px; }
+  .ask {
+    font-family: var(--serif); font-size: 15px; line-height: 1.5; color: var(--ink);
+    padding: 9px 0 9px 13px; border-left: 2px solid var(--rule);
+  }
+  .ask + .ask { margin-top: 3px; }
+
   .strip { background: var(--shell); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); padding: 30px 0; }
   .strip p { font-family: var(--serif); font-size: 18px; line-height: 1.55; color: var(--ink); max-width: 46em; }
 
@@ -155,6 +165,7 @@
   .abbr { display: none; }
 
   @media (max-width: 640px) {
+    .four.wide.asks { grid-template-columns: 1fr; }
     table.calc { font-size: 11.5px; }
     table.calc th { font-size: 10px; padding-left: 9px; }
     table.calc td { padding-left: 9px; }
@@ -260,6 +271,51 @@
 </div>
 
 <div class="wrap band" style="padding-top: 62px;">
+  <p class="band-label">What a firm actually asks</p>
+  <p class="band-note">
+    Asked in plain language, the way you would ask a colleague. No answers on this page: every
+    question below is one early access answers today, from an attested schedule or from the
+    instrument itself, with the working and the citation attached.
+  </p>
+  <div class="four wide asks">
+    <div>
+      <h3>Payroll and people</h3>
+      <p class="ask">What super do I owe for the September quarter, and when is it due?</p>
+      <p class="ask">What do I withhold from a $9,500 bonus paid this fortnight?</p>
+      <p class="ask">How much of this redundancy payment is tax free?</p>
+      <p class="ask">We employ in Queensland and Victoria. Are we over the payroll tax threshold?</p>
+    </div>
+    <div>
+      <h3>Awards and entitlements</h3>
+      <p class="ask">Which award covers a mobile mechanic?</p>
+      <p class="ask">My client is a level 3 cook, full time. What is the correct hourly rate?</p>
+      <p class="ask">Is a casual entitled to annual leave?</p>
+      <p class="ask">What allowances sit on top of that rate, and which clause sets them?</p>
+    </div>
+    <div>
+      <h3>Tax and BAS</h3>
+      <p class="ask">Turnover will pass $80,000 in March. When must I register for GST?</p>
+      <p class="ask">Do I have to pay PAYG instalments this year?</p>
+      <p class="ask">What is the gross-up rate on a type 1 fringe benefit this FBT year?</p>
+      <p class="ask">What is the company tax rate for a base rate entity this year?</p>
+    </div>
+    <div>
+      <h3>As at a date</h3>
+      <p class="ask">What was the New South Wales payroll tax threshold for the 2024 year?</p>
+      <p class="ask">What was the super guarantee rate in the March 2023 quarter?</p>
+      <p class="ask">What did the resident income tax scale look like in the 2023 year?</p>
+      <p class="ask">Which compilation of the Act does that answer rest on?</p>
+    </div>
+  </div>
+  <p class="defined" style="margin-top: 26px; max-width: 44em;">
+    Some questions Toby will not answer for you, and says so. Whether a worker is an employee or a
+    contractor, whether a group exists for payroll tax, and whether a position is reasonably
+    arguable are judgements a person must record, with their evidence, before a figure is computed
+    from them.
+  </p>
+</div>
+
+<div class="wrap band">
   <p class="band-label">What early access covers</p>
   <p class="band-note">
     Coverage is stated in three bands, and a band is the only promise made about it. Nothing here
