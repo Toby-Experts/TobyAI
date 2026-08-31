@@ -21,7 +21,7 @@
 <meta name="twitter:image:alt" content="TobyAI logo">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
 <script defer data-domain="tobyai.io" src="https://plausible.io/js/script.js"></script>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -40,7 +40,6 @@
     --teal-d: #0b6660;
     --sans:  'Instrument Sans', system-ui, sans-serif;
     --serif: 'Source Serif 4', Georgia, serif;
-    --mono:  'IBM Plex Mono', ui-monospace, monospace;
   }
   body { font-family: var(--sans); background: var(--paper); color: var(--ink); -webkit-font-smoothing: antialiased; }
   .wrap { max-width: 1040px; margin: 0 auto; padding: 0 32px; }
@@ -107,9 +106,6 @@
     text-transform: uppercase; color: var(--teal); background: rgba(14,127,118,0.09);
     border-radius: 4px; padding: 4px 8px; margin-bottom: 13px;
   }
-  .statement { font-size: 16px; line-height: 1.55; margin-bottom: 7px; }
-  .statement b { font-family: var(--mono); font-weight: 600; font-variant-numeric: tabular-nums; }
-  .meta { font-size: 12.5px; line-height: 1.62; color: var(--ink-3); margin-bottom: 16px; }
   blockquote {
     font-family: var(--serif); font-size: 15.5px; line-height: 1.66; color: var(--ink);
     border-left: 2px solid var(--teal-l); padding-left: 17px;
@@ -117,18 +113,6 @@
   blockquote span { display: block; }
   blockquote span + span { margin-top: 9px; }
   .defined { font-size: 12px; color: var(--ink-3); margin-top: 13px; line-height: 1.55; }
-  .cite { font-size: 12px; line-height: 1.6; color: var(--ink-2); margin-top: 16px; padding-top: 13px; border-top: 1px solid var(--rule); }
-
-  table.calc { width: 100%; border-collapse: collapse; font-size: 13px; font-variant-numeric: tabular-nums; }
-  table.calc th {
-    text-align: right; font-weight: 600; font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase;
-    color: var(--ink-3); padding: 0 0 7px 14px; border-bottom: 1px solid var(--rule);
-  }
-  table.calc th:first-child, table.calc td:first-child { text-align: left; padding-left: 0; }
-  table.calc td { text-align: right; padding: 8px 0 8px 14px; border-bottom: 1px solid var(--rule); color: var(--ink-2); }
-  table.calc td:first-child { color: var(--ink); font-weight: 500; }
-  table.calc tr.total td { border-bottom: none; font-weight: 600; color: var(--ink); }
-
   .band { padding: 62px 0; }
   .band + .band { padding-top: 0; }
   .band-label {
@@ -143,12 +127,17 @@
   .four h3 .num { color: var(--teal); font-variant-numeric: tabular-nums; margin-right: 8px; }
   .four p { font-size: 14.5px; line-height: 1.62; color: var(--ink-2); }
 
-  .asks h3 { margin-bottom: 13px; }
-  .ask {
-    font-family: var(--serif); font-size: 15px; line-height: 1.5; color: var(--ink);
-    padding: 9px 0 9px 13px; border-left: 2px solid var(--rule);
+  .asks-card { margin-bottom: 20px; }
+  .ask-group {
+    font-family: var(--sans); font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--ink-3); margin: 20px 0 8px;
   }
-  .ask + .ask { margin-top: 3px; }
+  .ask-group:first-child { margin-top: 0; }
+  .ask {
+    font-family: var(--serif); font-size: 15.5px; line-height: 1.45; color: var(--ink);
+    padding: 8px 0 8px 13px; border-left: 2px solid var(--teal-g);
+  }
+  .ask + .ask { margin-top: 4px; }
 
   .strip { background: var(--shell); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); padding: 30px 0; }
   .strip p { font-family: var(--serif); font-size: 18px; line-height: 1.55; color: var(--ink); max-width: 46em; }
@@ -161,17 +150,6 @@
   footer { padding: 28px 0 48px; font-size: 13px; color: var(--ink-3); }
   footer a { color: var(--ink-2); text-decoration: none; }
   footer a:hover { color: var(--teal); }
-
-  .abbr { display: none; }
-
-  @media (max-width: 640px) {
-    .four.wide.asks { grid-template-columns: 1fr; }
-    table.calc { font-size: 11.5px; }
-    table.calc th { font-size: 10px; padding-left: 9px; }
-    table.calc td { padding-left: 9px; }
-    .full { display: none; }
-    .abbr { display: inline; }
-  }
 
   @media (max-width: 860px) {
     .hero { grid-template-columns: 1fr; gap: 40px; padding: 48px 0 56px; }
@@ -230,34 +208,29 @@
     </div>
 
     <div class="card lift">
-      <div class="card-head">Asked: <strong>Payroll tax for the year ending 30 June 2026, with staff in Queensland, New South Wales and Victoria</strong></div>
+      <div class="card-head"><strong>What a firm actually asks</strong>, in plain language, the way you would ask a colleague</div>
       <div class="card-body">
-        <span class="tag">Computed answer</span>
-        <p class="statement">Payroll tax of <b>$338,410.23</b> is payable across the three jurisdictions on $7,450,000 of Australian taxable wages.</p>
-        <p class="meta">
-          Each state's threshold is apportioned to its share of Australia-wide wages, which is why
-          two of the three thresholds fall well below their headline figure.
-        </p>
-        <table class="calc">
-          <thead>
-            <tr><th>Jurisdiction</th><th>Wages</th><th>Threshold</th><th>Rate</th><th>Payable</th></tr>
-          </thead>
-          <tbody>
-            <tr><td><span class="full">Queensland</span><span class="abbr">QLD</span></td><td>$2,400,000</td><td>$418,791.95</td><td>4.95%</td><td>$98,069.80</td></tr>
-            <tr><td><span class="full">New South Wales</span><span class="abbr">NSW</span></td><td>$1,650,000</td><td>$265,771.81</td><td>5.45%</td><td>$75,440.44</td></tr>
-            <tr><td><span class="full">Victoria</span><span class="abbr">VIC</span></td><td>$3,400,000</td><td><span class="full">nil, phased out</span><span class="abbr">nil</span></td><td>4.85%</td><td>$164,900.00</td></tr>
-            <tr class="total"><td>Total</td><td>$7,450,000</td><td></td><td></td><td>$338,410.23</td></tr>
-          </tbody>
-        </table>
+        <div class="asks-card">
+          <p class="ask-group">Payroll and people</p>
+          <p class="ask">What super do I owe for the September quarter, and when is it due?</p>
+          <p class="ask">What do I withhold from a $9,500 bonus paid this fortnight?</p>
+          <p class="ask">How much of this redundancy payment is tax free?</p>
+          <p class="ask-group">Awards and entitlements</p>
+          <p class="ask">Which award covers a mobile mechanic?</p>
+          <p class="ask">My client is a level 3 cook, full time. What is the correct hourly rate?</p>
+          <p class="ask-group">Tax and BAS</p>
+          <p class="ask">Turnover will pass $80,000 in March. When must I register for GST?</p>
+          <p class="ask">We employ in Queensland and Victoria. Are we over the payroll tax threshold?</p>
+          <p class="ask-group">As at a date</p>
+          <p class="ask">What was the New South Wales payroll tax threshold for the 2024 year?</p>
+          <p class="ask">Which compilation of the Act does that answer rest on?</p>
+        </div>
         <p class="defined">
-          A worked example on illustrative wages, computed by the production engine from its attested
-          schedule. Grouping and regional-employer status are judgements, so Toby requires a person
-          to record them and refuses to compute without them. Shown to the cent; the audit record
-          keeps full precision and a fingerprint of the assessment.
-        </p>
-        <p class="cite">
-          Figures held from Queensland Revenue Office, Revenue NSW and the Victorian State Revenue
-          Office, retrieved 19 August 2026, attested for this financial year on 23 August 2026.
+          Each one is answered from an attested schedule or from the instrument itself, with the
+          figure computed in code, the working shown and the provision cited. Some questions Toby
+          will not answer for you, and says so. Whether a worker is an employee or a contractor, and
+          whether a group exists for payroll tax, are judgements a person records, with their
+          evidence, before any figure is computed from them.
         </p>
       </div>
     </div>
@@ -271,51 +244,6 @@
 </div>
 
 <div class="wrap band" style="padding-top: 62px;">
-  <p class="band-label">What a firm actually asks</p>
-  <p class="band-note">
-    Asked in plain language, the way you would ask a colleague. No answers on this page: every
-    question below is one early access answers today, from an attested schedule or from the
-    instrument itself, with the working and the citation attached.
-  </p>
-  <div class="four wide asks">
-    <div>
-      <h3>Payroll and people</h3>
-      <p class="ask">What super do I owe for the September quarter, and when is it due?</p>
-      <p class="ask">What do I withhold from a $9,500 bonus paid this fortnight?</p>
-      <p class="ask">How much of this redundancy payment is tax free?</p>
-      <p class="ask">We employ in Queensland and Victoria. Are we over the payroll tax threshold?</p>
-    </div>
-    <div>
-      <h3>Awards and entitlements</h3>
-      <p class="ask">Which award covers a mobile mechanic?</p>
-      <p class="ask">My client is a level 3 cook, full time. What is the correct hourly rate?</p>
-      <p class="ask">Is a casual entitled to annual leave?</p>
-      <p class="ask">What allowances sit on top of that rate, and which clause sets them?</p>
-    </div>
-    <div>
-      <h3>Tax and BAS</h3>
-      <p class="ask">Turnover will pass $80,000 in March. When must I register for GST?</p>
-      <p class="ask">Do I have to pay PAYG instalments this year?</p>
-      <p class="ask">What is the gross-up rate on a type 1 fringe benefit this FBT year?</p>
-      <p class="ask">What is the company tax rate for a base rate entity this year?</p>
-    </div>
-    <div>
-      <h3>As at a date</h3>
-      <p class="ask">What was the New South Wales payroll tax threshold for the 2024 year?</p>
-      <p class="ask">What was the super guarantee rate in the March 2023 quarter?</p>
-      <p class="ask">What did the resident income tax scale look like in the 2023 year?</p>
-      <p class="ask">Which compilation of the Act does that answer rest on?</p>
-    </div>
-  </div>
-  <p class="defined" style="margin-top: 26px; max-width: 44em;">
-    Some questions Toby will not answer for you, and says so. Whether a worker is an employee or a
-    contractor, whether a group exists for payroll tax, and whether a position is reasonably
-    arguable are judgements a person must record, with their evidence, before a figure is computed
-    from them.
-  </p>
-</div>
-
-<div class="wrap band">
   <p class="band-label">What early access covers</p>
   <p class="band-note">
     Coverage is stated in three bands, and a band is the only promise made about it. Nothing here
