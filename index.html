@@ -124,20 +124,11 @@
   .four { display: grid; grid-template-columns: repeat(4, 1fr); gap: 34px; }
   .four.wide { grid-template-columns: repeat(auto-fit, minmax(168px, 1fr)); gap: 28px 30px; }
   .four h3 { font-size: 16px; font-weight: 600; margin-bottom: 9px; }
-  .four h3 .num { color: var(--teal); font-variant-numeric: tabular-nums; margin-right: 8px; }
   .four p { font-size: 14.5px; line-height: 1.62; color: var(--ink-2); }
 
-  .item { font-size: 14.5px; line-height: 1.6; color: var(--ink); }
-  .item + .item { margin-top: 9px; }
-
-  .stage { display: flex; gap: 14px; }
-  .stage + .stage { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--rule); }
-  .stage-num {
-    flex: 0 0 auto; font-size: 12px; font-weight: 700; letter-spacing: 0.04em; color: var(--teal);
-    font-variant-numeric: tabular-nums; padding-top: 3px;
-  }
-  .stage-body h4 { font-size: 14px; font-weight: 600; margin-bottom: 5px; }
-  .stage-body p { font-size: 14px; line-height: 1.6; color: var(--ink-2); }
+  .item { font-size: 14.5px; line-height: 1.6; color: var(--ink-2); }
+  .item + .item { margin-top: 11px; }
+  .item strong { color: var(--ink); font-weight: 600; }
 
   .asks-card { margin-bottom: 20px; }
   .ask-group {
@@ -151,10 +142,8 @@
   }
   .ask + .ask { margin-top: 4px; }
 
-  .strip { background: var(--shell); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); padding: 30px 0; }
-  .strip p { font-family: var(--serif); font-size: 18px; line-height: 1.55; color: var(--ink); max-width: 46em; }
-
   .secure { background: var(--navy); color: white; padding: 52px 0; }
+  .secure .four.wide { grid-template-columns: repeat(3, 1fr); gap: 30px 44px; }
   .secure .band-label { color: rgba(255,255,255,0.5); }
   .secure h3 { font-size: 15px; font-weight: 600; margin-bottom: 8px; color: white; }
   .secure p { font-size: 14px; line-height: 1.6; color: rgba(255,255,255,0.66); }
@@ -165,7 +154,7 @@
 
   @media (max-width: 860px) {
     .hero { grid-template-columns: 1fr; gap: 40px; padding: 48px 0 56px; }
-    .four, .two { grid-template-columns: 1fr; gap: 28px; }
+    .four, .two, .secure .four.wide { grid-template-columns: 1fr; gap: 28px; }
     .form { flex-direction: column; }
     .top nav { display: none; }
   }
@@ -242,30 +231,62 @@
   </div>
 </div>
 
-<div class="strip">
+<div class="secure">
   <div class="wrap">
-    <p>No client name, tax file number, salary or bank account number reaches an AI provider, and inference stays in Australia. The per-client permission a tax practitioner needs before client data enters an external AI does not arise here, because the data never goes.</p>
+    <p class="band-label">Why a firm can rely on it</p>
+    <p class="band-note" style="color: rgba(255,255,255,0.66);">
+      Six commitments, each a design decision rather than a policy promise.
+    </p>
+    <div class="four wide">
+      <div>
+        <h3>Computed, not generated</h3>
+        <p>Every figure is computed in versioned Python from an attested schedule. The engine imports
+           no AI, so no model writes a number.</p>
+      </div>
+      <div>
+        <h3>No PII to AI</h3>
+        <p>Names, tax file numbers, bank details and salaries never reach an AI provider. Identifiers
+           are hashed at the boundary.</p>
+      </div>
+      <div>
+        <h3>No training on your data</h3>
+        <p>Toby trains no model on your data. Its models run on Amazon Bedrock, whose terms say your
+           content is not used to improve the base models and is not shared with any provider.</p>
+      </div>
+      <div>
+        <h3>Australian residency</h3>
+        <p>Your compliance data is held and processed in Sydney, so there is no cross-border
+           disclosure to paper over.</p>
+      </div>
+      <div>
+        <h3>Enforced multi-factor</h3>
+        <p>Sign-in runs against a managed identity service in an Australian region and requires a
+           second factor. Access to a client is scoped to the people you authorise.</p>
+      </div>
+      <div>
+        <h3>Auditable by design</h3>
+        <p>Each answer records the schedule version, the source and a fingerprint of the assessment,
+           so a file note can be reconstructed later.</p>
+      </div>
+    </div>
   </div>
 </div>
 
 <div class="wrap band" style="padding-top: 62px;">
-  <p class="band-label">What early access covers</p>
-  <p class="band-note">
-    What is there at launch, then a rollout in the order it ships. The order is the only commitment
-    made about it, because a date we cannot hold is worth nothing to you.
-  </p>
+  <p class="band-label">What it covers</p>
   <div class="two">
     <div class="card">
-      <div class="card-head"><strong>At launch</strong></div>
+      <div class="card-head"><strong>The compliance surface</strong></div>
       <div class="card-body">
         <p class="item">Income tax, GST and BAS, PAYG withholding and instalments, super guarantee,
           fringe benefits tax, termination and redundancy.</p>
         <p class="item">State payroll tax for Queensland, New South Wales and Victoria.</p>
         <p class="item">The 26 Fair Work awards that cover most employers, with rates and allowances
           from the Commission's own data.</p>
-        <p class="item">Your accounting file checked before you lodge, and a spreadsheet or document
-          audited against the source.</p>
-        <p class="item">Any of it asked as at a date, answered on the law in force then.</p>
+        <p class="item">Commonwealth Acts, state revenue offices and the Fair Work Commission, asked
+          as one body of law rather than one site at a time.</p>
+        <p class="item">Any of it asked as at a date, answered on the law in force then, naming the
+          compilation it used.</p>
         <p class="defined">
           Payroll tax computes three states, not eight. Ask about a state Toby does not compute and
           it says so, instead of returning a figure that looks right.
@@ -274,125 +295,19 @@
     </div>
 
     <div class="card">
-      <div class="card-head"><strong>Rollout, in the order it ships</strong></div>
+      <div class="card-head"><strong>How you reach it</strong></div>
       <div class="card-body">
-        <div class="stage">
-          <div class="stage-num">01</div>
-          <div class="stage-body">
-            <h4>Your own AI assistant</h4>
-            <p>A remote tool server, so Toby answers inside the assistant your firm already uses.</p>
-          </div>
-        </div>
-        <div class="stage">
-          <div class="stage-num">02</div>
-          <div class="stage-body">
-            <h4>Every state and territory</h4>
-            <p>The remaining payroll tax jurisdictions, workers compensation, and Fair Work penalty
-               and overtime rates.</p>
-          </div>
-        </div>
-        <div class="stage">
-          <div class="stage-num">03</div>
-          <div class="stage-body">
-            <h4>The wider regulatory surface</h4>
-            <p>Work health and safety, anti-money laundering, privacy, ASIC and director
-               obligations, and industry licensing.</p>
-          </div>
-        </div>
+        <p class="item"><strong>In the browser.</strong> A portal you sign in to with a second
+          factor, nothing to install. Ask, read the working, keep the file note.</p>
+        <p class="item"><strong>Connected to your ledger.</strong> Authorise Xero once and the health
+          check reads the file server side, then reports what would not survive review.</p>
+        <p class="item"><strong>Send us the file.</strong> Attach a spreadsheet or a document and get
+          it audited against the source, returned as a workbook, a document or plain text with its
+          citations.</p>
         <p class="defined">
-          A stage carries no rate, threshold or date here, because a promised figure is still a
-          compliance claim and only an attested schedule may carry one.
+          Every way in computes the same figures, keeps the same boundary and makes the same
+          refusals.
         </p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="wrap band">
-  <p class="band-label">How you reach it</p>
-  <p class="band-note">
-    Three ways in at launch, and a fourth in the rollout.
-  </p>
-  <div class="four wide">
-    <div>
-      <h3>In the browser</h3>
-      <p>A portal you sign in to with a second factor, nothing to install. Ask, read the working,
-         keep the file note.</p>
-    </div>
-    <div>
-      <h3>Connected to your ledger</h3>
-      <p>Authorise Xero once and the health check reads the file server side, then reports what
-         would not survive review.</p>
-    </div>
-    <div>
-      <h3>Send us the file</h3>
-      <p>Attach a spreadsheet or a document and get it audited against the source, returned as a
-         workbook, a document or plain text with its citations.</p>
-    </div>
-    <div>
-      <h3><span class="num">Rollout</span>Your own assistant</h3>
-      <p>A remote tool server, computing the same figures and making the same refusals inside your
-         own assistant.</p>
-    </div>
-  </div>
-</div>
-
-<div class="wrap band">
-  <p class="band-label">Calculate. Trace. Defend.</p>
-  <div class="four">
-    <div>
-      <h3>Not generated, computed</h3>
-      <p>A cited answer from a general AI assistant is still an answer a model wrote. Toby's figures are computed in versioned Python from attested schedules, and the engine that computes them imports no AI.</p>
-    </div>
-    <div>
-      <h3>Federal and state together</h3>
-      <p>Commonwealth Acts, state revenue offices and the Fair Work Commission, asked as one body of
-         law rather than one site at a time.</p>
-    </div>
-    <div>
-      <h3>Answered as at a date</h3>
-      <p>Ask about a past period and Toby answers on the law in force then, and names the compilation
-         it used.</p>
-    </div>
-    <div>
-      <h3>Checked against your numbers</h3>
-      <p>Toby reads your accounting file inside our Australian boundary and tests the figures you are
-         about to lodge, rather than waiting for a reviewer to find them.</p>
-    </div>
-  </div>
-</div>
-
-<div class="secure">
-  <div class="wrap">
-    <p class="band-label">Where your data sits</p>
-    <p class="band-note" style="color: rgba(255,255,255,0.66);">
-      Five commitments, each a design decision rather than a policy promise.
-    </p>
-    <div class="four wide">
-      <div>
-        <h3>No PII to AI</h3>
-        <p>Names, tax file numbers, bank details and salaries never reach an AI provider. Identifiers
-           are hashed at the boundary.</p>
-      </div>
-      <div>
-        <h3>Australian residency</h3>
-        <p>Your compliance data is held and processed in Sydney, so there is no cross-border disclosure to paper over.</p>
-      </div>
-      <div>
-        <h3>Enforced multi-factor</h3>
-        <p>Sign-in requires a second factor, and access to a client's data is scoped to the people
-           you authorise.</p>
-      </div>
-      <div>
-        <h3>No training on your data</h3>
-        <p>Toby trains no model on your data. The models it calls run on Amazon Bedrock, whose terms
-           say your content is not used to improve the base models and is not shared with any model
-           provider.</p>
-      </div>
-      <div>
-        <h3>Auditable by design</h3>
-        <p>Each answer records the schedule version, the source it came from and a fingerprint of the
-           assessment, so a file note can be reconstructed later.</p>
       </div>
     </div>
   </div>
