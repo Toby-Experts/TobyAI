@@ -127,6 +127,18 @@
   .four h3 .num { color: var(--teal); font-variant-numeric: tabular-nums; margin-right: 8px; }
   .four p { font-size: 14.5px; line-height: 1.62; color: var(--ink-2); }
 
+  .item { font-size: 14.5px; line-height: 1.6; color: var(--ink); }
+  .item + .item { margin-top: 9px; }
+
+  .stage { display: flex; gap: 14px; }
+  .stage + .stage { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--rule); }
+  .stage-num {
+    flex: 0 0 auto; font-size: 12px; font-weight: 700; letter-spacing: 0.04em; color: var(--teal);
+    font-variant-numeric: tabular-nums; padding-top: 3px;
+  }
+  .stage-body h4 { font-size: 14px; font-weight: 600; margin-bottom: 5px; }
+  .stage-body p { font-size: 14px; line-height: 1.6; color: var(--ink-2); }
+
   .asks-card { margin-bottom: 20px; }
   .ask-group {
     font-family: var(--sans); font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
@@ -211,26 +223,26 @@
       <div class="card-head"><strong>What a firm actually asks</strong>, in plain language, the way you would ask a colleague</div>
       <div class="card-body">
         <div class="asks-card">
-          <p class="ask-group">Payroll and people</p>
-          <p class="ask">What super do I owe for the September quarter, and when is it due?</p>
-          <p class="ask">What do I withhold from a $9,500 bonus paid this fortnight?</p>
-          <p class="ask">How much of this redundancy payment is tax free?</p>
-          <p class="ask-group">Awards and entitlements</p>
-          <p class="ask">Which award covers a mobile mechanic?</p>
-          <p class="ask">My client is a level 3 cook, full time. What is the correct hourly rate?</p>
-          <p class="ask-group">Tax and BAS</p>
-          <p class="ask">Turnover will pass $80,000 in March. When must I register for GST?</p>
-          <p class="ask">We employ in Queensland and Victoria. Are we over the payroll tax threshold?</p>
-          <p class="ask-group">As at a date</p>
-          <p class="ask">What was the New South Wales payroll tax threshold for the 2024 year?</p>
-          <p class="ask">Which compilation of the Act does that answer rest on?</p>
+          <p class="ask-group">Across the group</p>
+          <p class="ask">Four entities employ in Queensland, New South Wales and Victoria. What payroll tax does each state levy on the group's wages, and who lodges?</p>
+          <p class="ask">Super for 240 staff paid monthly, for the quarter. What is owed, when is it due, and what is no longer deductible if it is late?</p>
+          <p class="ask-group">Restructures and exits</p>
+          <p class="ask">A redundancy round covers 14 roles, service between 2 and 19 years. How much of each payment is tax free, and what is withheld on the balance?</p>
+          <p class="ask">An executive leaves with unused long service leave accrued since 1991. Which part is concessionally taxed, and at what rate?</p>
+          <p class="ask-group">Awards across sites</p>
+          <p class="ask">Three awards apply across our sites. Which one covers a maintenance fitter working in a food plant, and on what classification?</p>
+          <p class="ask">What is the correct base rate for a level 5 employee under that award, and which clause sets it?</p>
+          <p class="ask-group">Prior years, on the law of the day</p>
+          <p class="ask">We are amending the year ended 30 June 2024. What was the New South Wales payroll tax rate and threshold then?</p>
+          <p class="ask">Which compilation of the Act does that answer rest on, and what date does the publisher print on it?</p>
         </div>
         <p class="defined">
           Each one is answered from an attested schedule or from the instrument itself, with the
           figure computed in code, the working shown and the provision cited. Some questions Toby
-          will not answer for you, and says so. Whether a worker is an employee or a contractor, and
-          whether a group exists for payroll tax, are judgements a person records, with their
-          evidence, before any figure is computed from them.
+          will not answer for you, and says so. Whether a worker is an employee or a contractor,
+          whether related entities form a payroll tax group, and whether a position is reasonably
+          arguable are judgements a person records, with their evidence, before any figure is
+          computed from them.
         </p>
       </div>
     </div>
@@ -246,18 +258,19 @@
 <div class="wrap band" style="padding-top: 62px;">
   <p class="band-label">What early access covers</p>
   <p class="band-note">
-    Coverage is stated in three bands, and a band is the only promise made about it. Nothing here
-    carries a date we cannot hold, and a figure is only ever quoted from the band that is live.
+    What is live is live today. What follows it is a rollout in the order it ships, and the order is
+    the only commitment made about it, because a date we cannot hold is worth nothing to you.
   </p>
   <div class="two">
     <div class="card">
       <div class="card-head"><strong>Live at early access</strong></div>
       <div class="card-body">
-        <p class="statement">Income tax, GST and BAS, PAYG withholding and instalments, super
+        <p class="item">Income tax, GST and BAS, PAYG withholding and instalments, super
           guarantee, fringe benefits tax, termination and redundancy.</p>
-        <p class="statement">State payroll tax for Queensland, New South Wales and Victoria.</p>
-        <p class="statement">The 26 Fair Work awards that cover most small-business employers, with
-          pay rates and allowances read from the Commission's own data.</p>
+        <p class="item">State payroll tax for Queensland, New South Wales and Victoria.</p>
+        <p class="item">The 26 Fair Work awards that cover most employers, with pay rates and
+          allowances read from the Commission's own data.</p>
+        <p class="item">Any of it asked as at a date, answered on the law in force then.</p>
         <p class="defined">
           Payroll tax computes three states at launch rather than eight. Ask about a state Toby does
           not compute and it says so, instead of returning a figure that looks right.
@@ -266,20 +279,43 @@
     </div>
 
     <div class="card">
-      <div class="card-head"><strong>Next, then later</strong></div>
+      <div class="card-head"><strong>Rollout, in the order it ships</strong></div>
       <div class="card-body">
-        <span class="tag">Next</span>
-        <p class="statement">A health check that reads your accounting file and reports what would
-          not survive review.</p>
-        <p class="statement">The remaining states and territories for payroll tax, workers
-          compensation and work health and safety obligations, Fair Work penalty and overtime rates,
-          and reading a spreadsheet or document you attach and auditing it against the source.</p>
-        <span class="tag">Later</span>
-        <p class="statement">Anti-money laundering, privacy, ASIC and director obligations, industry
-          licensing, and the wider regulatory surface a growing business acquires.</p>
+        <div class="stage">
+          <div class="stage-num">01</div>
+          <div class="stage-body">
+            <h4>Your accounting file, checked</h4>
+            <p>A health check that reads the ledger and reports what would not survive review,
+               before you lodge rather than after.</p>
+          </div>
+        </div>
+        <div class="stage">
+          <div class="stage-num">02</div>
+          <div class="stage-body">
+            <h4>Every state and territory</h4>
+            <p>The remaining payroll tax jurisdictions, workers compensation, and Fair Work penalty
+               and overtime rates.</p>
+          </div>
+        </div>
+        <div class="stage">
+          <div class="stage-num">03</div>
+          <div class="stage-body">
+            <h4>Your own files, audited</h4>
+            <p>Attach a spreadsheet or a document and have it tested against the source, with the
+               result returned carrying its citations and dates.</p>
+          </div>
+        </div>
+        <div class="stage">
+          <div class="stage-num">04</div>
+          <div class="stage-body">
+            <h4>The wider regulatory surface</h4>
+            <p>Work health and safety, anti-money laundering, privacy, ASIC and director
+               obligations, and industry licensing.</p>
+          </div>
+        </div>
         <p class="defined">
-          A roadmap item carries no rate, threshold or date on this page, because a promised figure
-          is still a compliance claim and only an attested schedule may carry one.
+          A stage carries no rate, threshold or date on this page, because a promised figure is
+          still a compliance claim and only an attested schedule may carry one.
         </p>
       </div>
     </div>
@@ -289,28 +325,28 @@
 <div class="wrap band">
   <p class="band-label">How you reach it</p>
   <p class="band-note">
-    One way in at early access, and three more named as next rather than promised.
+    One way in at early access, then three more in the order they open.
   </p>
   <div class="four wide">
     <div>
-      <h3>In the browser</h3>
+      <h3><span class="num">Live</span>In the browser</h3>
       <p>A portal you sign in to with a second factor, nothing to install, and every answer held
          inside our Australian boundary. Ask in plain language, read the working, keep the file note.</p>
     </div>
     <div>
-      <h3>Next: connected to your ledger</h3>
+      <h3><span class="num">01</span>Connected to your ledger</h3>
       <p>Authorise Xero once and the health check reads the file server side, tests what you are
          about to lodge, and reports what would not survive review.</p>
     </div>
     <div>
-      <h3>Next: your own assistant</h3>
-      <p>A remote tool server so Toby answers from inside the AI assistant your firm already uses,
-         computing the same figures and making the same refusals.</p>
-    </div>
-    <div>
-      <h3>Next: send us the file</h3>
+      <h3><span class="num">02</span>Send us the file</h3>
       <p>Attach a spreadsheet or a document and get it audited against the source, with the answer
          returned as a workbook, a document or plain text carrying its citations and dates.</p>
+    </div>
+    <div>
+      <h3><span class="num">03</span>Your own assistant</h3>
+      <p>A remote tool server so Toby answers from inside the AI assistant your firm already uses,
+         computing the same figures and making the same refusals.</p>
     </div>
   </div>
 </div>
@@ -319,22 +355,22 @@
   <p class="band-label">Calculate. Trace. Defend.</p>
   <div class="four">
     <div>
-      <h3><span class="num">01</span>Not generated, computed</h3>
+      <h3>Not generated, computed</h3>
       <p>A cited answer from a general AI assistant is still an answer a model wrote. Toby's figures are not written by a model at all. They are computed in versioned Python from attested schedules, and the engine that computes them imports no AI.</p>
     </div>
     <div>
-      <h3><span class="num">02</span>Federal and state together</h3>
+      <h3>Federal and state together</h3>
       <p>Commonwealth Acts, state revenue offices and the Fair Work Commission, kept current and
          asked as one body of law rather than one site at a time.</p>
     </div>
     <div>
-      <h3><span class="num">03</span>Answered as at a date</h3>
+      <h3>Answered as at a date</h3>
       <p>Ask about a past period and Toby answers on the law in force then, and names the compilation
          it used.</p>
     </div>
     <div>
-      <h3><span class="num">04</span>Checked against your numbers</h3>
-      <p>Next on the roadmap, Toby reads your accounting file inside our Australian boundary and tests
+      <h3>Checked against your numbers</h3>
+      <p>First in the rollout, Toby reads your accounting file inside our Australian boundary and tests
          the figures you are about to lodge, rather than waiting for a reviewer to find them.</p>
     </div>
   </div>
