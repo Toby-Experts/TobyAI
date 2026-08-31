@@ -33,11 +33,11 @@
     --paper:  #ffffff;
     --shell:  #f5f8f7;
     --rule:   #e2e8e6;
-    --teal:   #0e7f76;
-    --teal-l: #0e7f76;
-    --teal-g: #0e7f76;
-    --teal-display: #0d9488;
-    --teal-d: #0b6660;
+    --teal:   #0b7d84;
+    --teal-l: #0b7d84;
+    --teal-g: #0b7d84;
+    --teal-display: #0e9aa0;
+    --teal-d: #08666c;
     --sans:  'Instrument Sans', system-ui, sans-serif;
     --serif: 'Source Serif 4', Georgia, serif;
   }
@@ -103,7 +103,7 @@
   .card-body { padding: 20px; }
   .tag {
     display: inline-block; font-size: 10.5px; font-weight: 700; letter-spacing: 0.08em;
-    text-transform: uppercase; color: var(--teal); background: rgba(14,127,118,0.09);
+    text-transform: uppercase; color: var(--teal); background: rgba(11,125,132,0.09);
     border-radius: 4px; padding: 4px 8px; margin-bottom: 13px;
   }
   blockquote {
@@ -169,7 +169,7 @@
   </div>
   <div class="wrap hero">
     <div class="hero-copy">
-      <p class="eyebrow">Early access, limited to the first 50 firms</p>
+      <p class="eyebrow">Limited early access</p>
       <h1>Numbers you can<br><span>defend.</span></h1>
       <p class="lede">
         Australian tax and employment figures computed in auditable code, cited to the provision,
@@ -189,21 +189,21 @@
       <div id="signup-form">
         <div class="form">
           <input class="field" type="email" id="f-email" placeholder="you@firm.com.au">
-          <button class="btn" id="form-btn" onclick="submitForm()">Request early access</button>
+          <button class="btn" id="form-btn" onclick="submitForm()">Sign up now</button>
         </div>
         <div class="honeypot" aria-hidden="true">
           <input type="text" id="company-website" name="company_website" tabindex="-1" autocomplete="off">
         </div>
         <div class="error-msg" id="form-error">Please enter a valid email address.</div>
         <p class="form-note">
-          Fifty firms, in the order they join, priced from the first day. One email when your place
+          Access is limited while we onboard the first firms. One email when your place
           is ready. Signups are stored in Sydney, as the
           <a href="/privacy.html">privacy policy</a> sets out.
         </p>
       </div>
       <div class="success" id="success-msg">
         <h3>You're on the list.</h3>
-        <p>We will write to you with your place in the first 50, and again when it opens.</p>
+        <p>We will write to you when your place opens.</p>
       </div>
     </div>
 
@@ -215,8 +215,8 @@
           <p class="ask">Four entities employ in Queensland, New South Wales and Victoria. What payroll tax does each state levy on the group's wages, and who lodges?</p>
           <p class="ask-group">Restructures and exits</p>
           <p class="ask">A redundancy round covers 14 roles, service between 2 and 19 years. How much of each payment is tax free, and what is withheld on the balance?</p>
-          <p class="ask-group">Awards across sites</p>
-          <p class="ask">Three awards apply across our sites. Which one covers a maintenance fitter in a food plant, on what classification, and at what rate?</p>
+          <p class="ask-group">Construction, on site</p>
+          <p class="ask">We have carpenters and concreters on a commercial site in Brisbane. Which classification covers a CW3 concreter, what is the ordinary hourly rate once the industry allowance is in, and where does the award say so?</p>
           <p class="ask-group">Prior years, on the law of the day</p>
           <p class="ask">We are amending the year ended 30 June 2024. What was the New South Wales rate and threshold then, and which compilation says so?</p>
         </div>
@@ -366,7 +366,7 @@
     err.textContent = message;
     err.style.display = 'block';
     btn.disabled = false;
-    btn.textContent = 'Request early access';
+    btn.textContent = 'Sign up now';
   }
 </script>
 
