@@ -135,6 +135,7 @@
   .band-note { font-size: 14.5px; line-height: 1.62; color: var(--ink-2); max-width: 44em; margin-bottom: 28px; }
   .two { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
   .four { display: grid; grid-template-columns: repeat(4, 1fr); gap: 34px; }
+  .four.wide { grid-template-columns: repeat(auto-fit, minmax(168px, 1fr)); gap: 28px 30px; }
   .four h3 { font-size: 16px; font-weight: 600; margin-bottom: 9px; }
   .four h3 .num { color: var(--teal); font-variant-numeric: tabular-nums; margin-right: 8px; }
   .four p { font-size: 14.5px; line-height: 1.62; color: var(--ink-2); }
@@ -178,19 +179,21 @@
   </div>
   <div class="wrap hero">
     <div class="hero-copy">
-      <p class="eyebrow">For Australian bookkeepers, accountants and the businesses they advise</p>
+      <p class="eyebrow">Early access, limited to the first 50 firms</p>
       <h1>Numbers you can<br><span>defend.</span></h1>
       <p class="lede">
-        Payroll tax, GST, PAYG withholding, income tax and Fair Work award rates, computed in auditable
-        code from Commonwealth, Queensland, New South Wales and Victorian rules, with every figure
-        traced to the provision it came from. The AI explains the answer. It never originates the number.
+        Australian tax and employment figures computed in auditable code, each traced to the provision
+        it came from, across Commonwealth and state law. Your client data stays in Sydney, no name, tax
+        file number or salary reaches an AI provider, and nothing you give Toby trains a model. The AI
+        explains the answer. It never originates the number.
       </p>
       <div class="cover">
         <div>Income tax</div>
         <div>GST and BAS</div>
         <div>PAYG withholding</div>
+        <div>Super guarantee</div>
         <div>Payroll tax</div>
-        <div>Workers compensation and WHS</div>
+        <div>Termination and redundancy</div>
         <div>Fair Work awards</div>
       </div>
       <div id="signup-form">
@@ -203,13 +206,15 @@
         </div>
         <div class="error-msg" id="form-error">Please enter a valid email address.</div>
         <p class="form-note">
-          One email when access opens, nothing else. Signups are stored on our own Australian
-          infrastructure in Sydney, as the <a href="/privacy.html">privacy policy</a> sets out.
+          Early access opens to 50 firms, in the order they join, priced from the first day rather
+          than run as a free trial. One email when your place is ready, nothing else. Signups are
+          stored on our own Australian infrastructure in Sydney, as the
+          <a href="/privacy.html">privacy policy</a> sets out.
         </p>
       </div>
       <div class="success" id="success-msg">
         <h3>You're on the list.</h3>
-        <p>We'll be in touch when early access opens.</p>
+        <p>We will write to you with your place in the first 50, and again when it opens.</p>
       </div>
     </div>
 
@@ -255,47 +260,73 @@
 </div>
 
 <div class="wrap band" style="padding-top: 62px;">
-  <p class="band-label">Two more answers, unedited</p>
+  <p class="band-label">What early access covers</p>
   <p class="band-note">
-    Statutory questions are answered from the provision itself, quoted verbatim and dated, so you can
-    check Toby rather than trust it.
+    Coverage is stated in three bands, and a band is the only promise made about it. Nothing here
+    carries a date we cannot hold, and a figure is only ever quoted from the band that is live.
   </p>
   <div class="two">
     <div class="card">
-      <div class="card-head">Asked: <strong>Annual leave entitlement under the National Employment Standards</strong></div>
+      <div class="card-head"><strong>Live at early access</strong></div>
       <div class="card-body">
-        <span class="tag">Stated answer</span>
-        <p class="statement">Four weeks of paid annual leave for each year of service, or five for a shiftworker.</p>
-        <p class="meta">Answered under current law, because the question did not state a period. Compilation in force from 7 July 2026.</p>
-        <blockquote>
-          <span>(1) For each year of service with an employer (other than periods of employment as a
-            casual employee of the employer), an employee is entitled to:</span>
-          <span>(a) 4 weeks of paid annual leave; or</span>
-          <span>(b) 5 weeks of paid annual leave, if: (i) a modern award applies to the employee and
-            defines or describes the employee as a shiftworker for the purposes of the National
-            Employment Standards ...</span>
-        </blockquote>
-        <p class="defined">Quoted to the start of subsection (1)(b); the provision continues.</p>
-        <p class="cite">Fair Work Act 2009, section 87. Federal Register of Legislation, CC BY 4.0.</p>
+        <p class="statement">Income tax, GST and BAS, PAYG withholding and instalments, super
+          guarantee, fringe benefits tax, termination and redundancy.</p>
+        <p class="statement">State payroll tax for Queensland, New South Wales and Victoria.</p>
+        <p class="statement">The 26 Fair Work awards that cover most small-business employers, with
+          pay rates and allowances read from the Commission's own data.</p>
+        <p class="defined">
+          Payroll tax computes three states at launch rather than eight. Ask about a state Toby does
+          not compute and it says so, instead of returning a figure that looks right.
+        </p>
       </div>
     </div>
 
     <div class="card">
-      <div class="card-head">Asked: <strong>How the GST registration turnover threshold is tested</strong></div>
+      <div class="card-head"><strong>Next, then later</strong></div>
       <div class="card-body">
-        <span class="tag">Stated answer</span>
-        <p class="statement">Whether you meet the registration turnover threshold turns on both your current and your projected GST turnover.</p>
-        <p class="meta">Answered under current law, because the question did not state a period. Compilation in force from 1 January 2026.</p>
-        <blockquote>
-          <span>(1) You have a GST turnover that meets a particular *turnover threshold if:</span>
-          <span>(a) your *current GST turnover is at or above the turnover threshold, and the
-            Commissioner is not satisfied that your *projected GST turnover is below the turnover
-            threshold; or</span>
-          <span>(b) your projected GST turnover is at or above the turnover threshold.</span>
-        </blockquote>
-        <p class="defined">An asterisk marks a term the Act defines. Quoted to the end of subsection (1); the provision continues.</p>
-        <p class="cite">A New Tax System (Goods and Services Tax) Act 1999, section 188-10. Federal Register of Legislation, CC BY 4.0.</p>
+        <span class="tag">Next</span>
+        <p class="statement">A health check that reads your accounting file and reports what would
+          not survive review.</p>
+        <p class="statement">The remaining states and territories for payroll tax, workers
+          compensation and work health and safety obligations, Fair Work penalty and overtime rates,
+          and reading a spreadsheet or document you attach and auditing it against the source.</p>
+        <span class="tag">Later</span>
+        <p class="statement">Anti-money laundering, privacy, ASIC and director obligations, industry
+          licensing, and the wider regulatory surface a growing business acquires.</p>
+        <p class="defined">
+          A roadmap item carries no rate, threshold or date on this page, because a promised figure
+          is still a compliance claim and only an attested schedule may carry one.
+        </p>
       </div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap band">
+  <p class="band-label">How you reach it</p>
+  <p class="band-note">
+    One way in at early access, and three more named as next rather than promised.
+  </p>
+  <div class="four wide">
+    <div>
+      <h3>In the browser</h3>
+      <p>A portal you sign in to with a second factor, nothing to install, and every answer held
+         inside our Australian boundary. Ask in plain language, read the working, keep the file note.</p>
+    </div>
+    <div>
+      <h3>Next: connected to your ledger</h3>
+      <p>Authorise Xero once and the health check reads the file server side, tests what you are
+         about to lodge, and reports what would not survive review.</p>
+    </div>
+    <div>
+      <h3>Next: your own assistant</h3>
+      <p>A remote tool server so Toby answers from inside the AI assistant your firm already uses,
+         computing the same figures and making the same refusals.</p>
+    </div>
+    <div>
+      <h3>Next: send us the file</h3>
+      <p>Attach a spreadsheet or a document and get it audited against the source, with the answer
+         returned as a workbook, a document or plain text carrying its citations and dates.</p>
     </div>
   </div>
 </div>
@@ -319,8 +350,8 @@
     </div>
     <div>
       <h3><span class="num">04</span>Checked against your numbers</h3>
-      <p>At early access, Toby reads your accounting data inside our Australian boundary to test the
-         figures you are about to lodge.</p>
+      <p>Next on the roadmap, Toby reads your accounting file inside our Australian boundary and tests
+         the figures you are about to lodge, rather than waiting for a reviewer to find them.</p>
     </div>
   </div>
 </div>
@@ -329,10 +360,10 @@
   <div class="wrap">
     <p class="band-label">Where your data sits</p>
     <p class="band-note" style="color: rgba(255,255,255,0.66);">
-      Four commitments early access ships on, each of them a design decision rather than a policy
+      Five commitments early access ships on, each of them a design decision rather than a policy
       promise.
     </p>
-    <div class="four">
+    <div class="four wide">
       <div>
         <h3>No PII to AI</h3>
         <p>Names, tax file numbers, bank details and salaries never reach an AI provider. Identifiers
@@ -346,6 +377,12 @@
         <h3>Enforced multi-factor</h3>
         <p>Sign-in requires a second factor, and access to a client's data is scoped to the people
            you authorise.</p>
+      </div>
+      <div>
+        <h3>No training on your data</h3>
+        <p>Toby trains no model on your data. The models it calls run on Amazon Bedrock, whose terms
+           say your content is not used to improve the base models and is not shared with any model
+           provider.</p>
       </div>
       <div>
         <h3>Auditable by design</h3>
