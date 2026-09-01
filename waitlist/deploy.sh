@@ -9,8 +9,10 @@ ROLE_NAME="tobyai-waitlist-lambda"
 API_NAME="tobyai-waitlist"
 EXPECTED_API_ID="pc24esfy6h"
 TABLE_ARN="arn:aws:dynamodb:${REGION}:${ACCOUNT_ID}:table/${TABLE_NAME}"
+SES_IDENTITY_ARN="arn:aws:ses:${REGION}:${ACCOUNT_ID}:identity/tobyai.io"
 
 : "${HASH_SALT:?Export HASH_SALT before running this script. The value is never stored in the repository.}"
+SIGNUP_EMAIL_FROM="${SIGNUP_EMAIL_FROM:-}"
 
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 BUILD_DIR="$(mktemp -d)"
@@ -37,6 +39,19 @@ cat > "$BUILD_DIR/table-policy.json" <<JSON
       "Effect": "Allow",
       "Action": ["dynamodb:PutItem", "dynamodb:UpdateItem"],
       "Resource": "${TABLE_ARN}"
+    }
+  ]
+}
+JSON
+
+cat > "$BUILD_DIR/ses-policy.json" <<JSON
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": "ses:SendEmail",
+      "Resource": "${SES_IDENTITY_ARN}"
     }
   ]
 }
@@ -90,9 +105,13 @@ aws iam put-role-policy \
   --role-name "$ROLE_NAME" \
   --policy-name waitlist-table-write \
   --policy-document "file://${BUILD_DIR}/table-policy.json"
+aws iam put-role-policy \
+  --role-name "$ROLE_NAME" \
+  --policy-name waitlist-email-send \
+  --policy-document "file://${BUILD_DIR}/ses-policy.json"
 ROLE_ARN="arn:aws:iam::${ACCOUNT_ID}:role/${ROLE_NAME}"
 
-python3 - "$BUILD_DIR/environment.json" <<'PY'
+SIGNUP_EMAIL_FROM="$SIGNUP_EMAIL_FROM" python3 - "$BUILD_DIR/environment.json" <<'PY'
 import json
 import os
 import sys
@@ -105,6 +124,7 @@ with open(sys.argv[1], "w", encoding="utf-8") as output:
                 "ALLOWED_ORIGINS": "https://www.tobyai.io,https://tobyai.io",
                 "RATE_LIMIT_PER_HOUR": "5",
                 "HASH_SALT": os.environ["HASH_SALT"],
+                "SIGNUP_EMAIL_FROM": os.environ.get("SIGNUP_EMAIL_FROM", ""),
             }
         },
         output,

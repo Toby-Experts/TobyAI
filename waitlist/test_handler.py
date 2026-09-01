@@ -15,6 +15,7 @@ os.environ["WAITLIST_TABLE"] = "test-waitlist"
 os.environ["ALLOWED_ORIGINS"] = "https://www.tobyai.io,https://tobyai.io"
 os.environ["RATE_LIMIT_PER_HOUR"] = "5"
 os.environ["HASH_SALT"] = "fixed-test-salt"
+os.environ.pop("SIGNUP_EMAIL_FROM", None)
 
 from waitlist import handler as waitlist
 
@@ -46,10 +47,28 @@ class FakeTable:
         return self.update_result
 
 
+class FakeSes:
+    def __init__(self) -> None:
+        self.send_calls: list[dict[str, Any]] = []
+        self.send_error: ClientError | None = None
+
+    def send_email(self, **kwargs: Any) -> None:
+        self.send_calls.append(kwargs)
+        if self.send_error is not None:
+            raise self.send_error
+
+
 @pytest.fixture
 def table(monkeypatch: pytest.MonkeyPatch) -> Iterator[FakeTable]:
     fake = FakeTable()
     monkeypatch.setattr(waitlist, "_TABLE", fake)
+    yield fake
+
+
+@pytest.fixture
+def ses(monkeypatch: pytest.MonkeyPatch) -> Iterator[FakeSes]:
+    fake = FakeSes()
+    monkeypatch.setattr(waitlist.boto3, "client", lambda service: fake)
     yield fake
 
 
@@ -88,6 +107,73 @@ def test_valid_signup_stores_salted_hash_and_returns_202(
     assert item["pk"] == f"signup#{waitlist._hashed(email)}"
     assert item["email"] == email
     assert email not in item["pk"]
+
+
+def test_first_signup_sends_receipt(
+    table: FakeTable,
+    ses: FakeSes,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    email = "person@example.com"
+    monkeypatch.setattr(waitlist, "SIGNUP_EMAIL_FROM", "developer@tobyai.io")
+
+    response = waitlist.handler(_event("POST", {"email": email}), None)
+
+    assert _status(response) == 202
+    assert len(ses.send_calls) == 1
+    send = ses.send_calls[0]
+    assert send["FromEmailAddress"] == "developer@tobyai.io"
+    assert send["Destination"] == {"ToAddresses": [email]}
+    content = send["Content"]["Simple"]
+    assert content["Subject"]["Data"] == "You're on the TobyAI waitlist"
+    body = content["Body"]["Text"]["Data"]
+    assert "http" not in body
+    assert body.endswith("tobyai.io")
+    assert table.update_calls[-1]["Key"] == {
+        "pk": f"signup#{waitlist._hashed(email)}"
+    }
+    assert ":notified_at" in table.update_calls[-1]["ExpressionAttributeValues"]
+
+
+def test_repeat_signup_sends_nothing(
+    table: FakeTable,
+    ses: FakeSes,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.setattr(waitlist, "SIGNUP_EMAIL_FROM", "developer@tobyai.io")
+    table.put_error = _client_error("ConditionalCheckFailedException", "PutItem")
+
+    response = waitlist.handler(_event("POST", {"email": "repeat@example.com"}), None)
+
+    assert _status(response) == 202
+    assert ses.send_calls == []
+    assert table.update_calls
+    assert all("notified_at" not in call.get("UpdateExpression", "") for call in table.update_calls)
+
+
+def test_receipt_failure_still_returns_202_without_notification_marker(
+    table: FakeTable,
+    ses: FakeSes,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    email = "receipt-failure@example.com"
+    monkeypatch.setattr(waitlist, "SIGNUP_EMAIL_FROM", "developer@tobyai.io")
+    ses.send_error = _client_error("MessageRejected", "SendEmail")
+
+    response = waitlist.handler(_event("POST", {"email": email}), None)
+
+    assert _status(response) == 202
+    assert len(ses.send_calls) == 1
+    assert all("notified_at" not in call.get("UpdateExpression", "") for call in table.update_calls)
+
+
+def test_unset_sender_sends_nothing(table: FakeTable, ses: FakeSes) -> None:
+    response = waitlist.handler(
+        _event("POST", {"email": "no-receipt@example.com"}), None
+    )
+
+    assert _status(response) == 202
+    assert ses.send_calls == []
 
 
 def test_invalid_address_stores_nothing(table: FakeTable) -> None:
@@ -229,3 +315,4 @@ def test_no_log_record_contains_a_raw_email_address(
 
     messages = [record.getMessage() for record in caplog.records]
     assert all(email not in message for email in emails for message in messages)
+    assert sum(waitlist._hashed(email) in message for email in emails for message in messages) >= 2
