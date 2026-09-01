@@ -19,7 +19,7 @@ import time
 from typing import Any
 
 import boto3
-from botocore.exceptions import ClientError
+from botocore.exceptions import BotoCoreError, ClientError
 
 LOGGER = logging.getLogger()
 LOGGER.setLevel(logging.INFO)
@@ -35,11 +35,23 @@ RATE_LIMIT_PER_HOUR = int(os.environ.get("RATE_LIMIT_PER_HOUR", "5"))
 # guessed address by hashing candidates.
 HASH_SALT = os.environ["HASH_SALT"]
 SIGNUP_TTL_DAYS = int(os.environ.get("SIGNUP_TTL_DAYS", "0"))
+SIGNUP_EMAIL_FROM = os.environ.get("SIGNUP_EMAIL_FROM", "")
 
-# Deliberately permissive: the address is confirmed by the fact that the
-# person receives the one email we send, not by a regular expression.
+# The regular expression is deliberately permissive. A receipt is sent on
+# first signup, so a bad address fails visibly if it cannot be received.
 EMAIL_RE = re.compile(r"^[^@\s]+@[^@\s.]+(\.[^@\s.]+)+$")
 MAX_EMAIL_LENGTH = 254
+SIGNUP_RECEIPT_SUBJECT = "You're on the TobyAI waitlist"
+SIGNUP_RECEIPT_BODY = """Thanks for signing up. You are on the waitlist for TobyAI.
+
+Access is limited while we onboard the first firms, so this is not a login yet. We will write to you once, when your place is ready, and nothing else in between.
+
+What you are waiting for: TobyAI answers Australian compliance questions with a figure computed in Python from a cited, dated rule, and shows the working. The AI explains what the answer means. It never makes the number up.
+
+Your address is held in Sydney and is never used to train a model. If you would rather we did not hold it, reply to this email with the word remove and we will delete it.
+
+TobyAI
+tobyai.io"""
 
 _TABLE = boto3.resource("dynamodb").Table(TABLE_NAME)
 
@@ -92,7 +104,7 @@ def _rate_limited(source_ip: str, now: int) -> bool:
     return attempts > RATE_LIMIT_PER_HOUR
 
 
-def _store(email: str, source_ip: str, now: int) -> None:
+def _store(email: str, source_ip: str, now: int) -> bool:
     item: dict[str, Any] = {
         "pk": f"signup#{_hashed(email)}",
         "email": email,
@@ -108,10 +120,51 @@ def _store(email: str, source_ip: str, now: int) -> None:
             Item=item,
             ConditionExpression="attribute_not_exists(pk)",
         )
+        return True
     except ClientError as error:
         if error.response["Error"]["Code"] != "ConditionalCheckFailedException":
             raise
         LOGGER.info("already held: %s", item["pk"])
+        return False
+
+
+def _send_receipt(email: str) -> bool:
+    if not SIGNUP_EMAIL_FROM:
+        return False
+    try:
+        boto3.client("sesv2").send_email(
+            FromEmailAddress=SIGNUP_EMAIL_FROM,
+            Destination={"ToAddresses": [email]},
+            Content={
+                "Simple": {
+                    "Subject": {
+                        "Data": SIGNUP_RECEIPT_SUBJECT,
+                        "Charset": "UTF-8",
+                    },
+                    "Body": {
+                        "Text": {
+                            "Data": SIGNUP_RECEIPT_BODY,
+                            "Charset": "UTF-8",
+                        }
+                    },
+                }
+            },
+        )
+    except (BotoCoreError, ClientError):
+        LOGGER.error("signup receipt failed: %s", _hashed(email))
+        return False
+    return True
+
+
+def _mark_notified(email: str, now: int) -> None:
+    try:
+        _TABLE.update_item(
+            Key={"pk": f"signup#{_hashed(email)}"},
+            UpdateExpression="SET notified_at = :notified_at",
+            ExpressionAttributeValues={":notified_at": now},
+        )
+    except (BotoCoreError, ClientError):
+        LOGGER.error("signup receipt marker failed: %s", _hashed(email))
 
 
 def handler(event: dict[str, Any], _context: object) -> dict[str, Any]:
@@ -153,10 +206,12 @@ def handler(event: dict[str, Any], _context: object) -> dict[str, Any]:
         return _response(429, {"error": "too_many_requests"}, origin)
 
     try:
-        _store(email, source_ip, now)
+        stored = _store(email, source_ip, now)
     except ClientError:
         LOGGER.exception("waitlist write failed")
         return _response(500, {"error": "storage_unavailable"}, origin)
 
     LOGGER.info("signup stored: %s", _hashed(email))
+    if stored and _send_receipt(email):
+        _mark_notified(email, now)
     return _response(202, {"status": "ok"}, origin)
