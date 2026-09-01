@@ -37,8 +37,8 @@ HASH_SALT = os.environ["HASH_SALT"]
 SIGNUP_TTL_DAYS = int(os.environ.get("SIGNUP_TTL_DAYS", "0"))
 SIGNUP_EMAIL_FROM = os.environ.get("SIGNUP_EMAIL_FROM", "")
 
-# Deliberately permissive: a receipt is sent on first signup, so a bad
-# address fails visibly if the receipt cannot be received.
+# The regular expression is deliberately permissive. A receipt is sent on
+# first signup, so a bad address fails visibly if it cannot be received.
 EMAIL_RE = re.compile(r"^[^@\s]+@[^@\s.]+(\.[^@\s.]+)+$")
 MAX_EMAIL_LENGTH = 254
 SIGNUP_RECEIPT_SUBJECT = "You're on the TobyAI waitlist"
