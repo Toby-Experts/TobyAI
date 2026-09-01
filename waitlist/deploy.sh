@@ -10,6 +10,7 @@ API_NAME="tobyai-waitlist"
 EXPECTED_API_ID="pc24esfy6h"
 TABLE_ARN="arn:aws:dynamodb:${REGION}:${ACCOUNT_ID}:table/${TABLE_NAME}"
 SES_IDENTITY_ARN="arn:aws:ses:${REGION}:${ACCOUNT_ID}:identity/tobyai.io"
+SES_ADDRESS_IDENTITY_ARN="arn:aws:ses:${REGION}:${ACCOUNT_ID}:identity/*@tobyai.io"
 
 : "${HASH_SALT:?Export HASH_SALT before running this script. The value is never stored in the repository.}"
 SIGNUP_EMAIL_FROM="${SIGNUP_EMAIL_FROM:-}"
@@ -51,7 +52,7 @@ cat > "$BUILD_DIR/ses-policy.json" <<JSON
     {
       "Effect": "Allow",
       "Action": "ses:SendEmail",
-      "Resource": "${SES_IDENTITY_ARN}"
+      "Resource": ["${SES_IDENTITY_ARN}", "${SES_ADDRESS_IDENTITY_ARN}"]
     }
   ]
 }
