@@ -127,8 +127,8 @@ def test_first_signup_sends_receipt(
     content = send["Content"]["Simple"]
     assert content["Subject"]["Data"] == "You're on the TobyAI waitlist"
     body = content["Body"]["Text"]["Data"]
-    assert "http" not in body
-    assert body.endswith("tobyai.io")
+    assert body == waitlist.SIGNUP_RECEIPT_BODY
+    assert body.splitlines()[-1] == "tobyai.io"
     assert table.update_calls[-1]["Key"] == {
         "pk": f"signup#{waitlist._hashed(email)}"
     }
