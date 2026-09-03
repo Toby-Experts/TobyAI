@@ -3,3 +3,4 @@ Allow: /
 
 Sitemap: https://www.tobyai.io/sitemap.xml
 Sitemap: https://www.tobyai.io/answers/sitemap.xml
+Sitemap: https://www.tobyai.io/coverage/sitemap.xml
