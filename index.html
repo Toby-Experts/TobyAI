@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="/toby_logo_512.svg">
 <title>TobyAI, numbers you can defend</title>
-<meta name="description" content="Australian tax and employment figures computed in auditable code from attested schedules, each traced to the provision it came from.">
+<meta name="description" content="Australian tax and employment figures computed in auditable code from versioned schedules, each traced to the provision it came from.">
 <meta property="og:title" content="TobyAI">
 <meta property="og:description" content="Australian tax and employment figures computed in auditable code, each traced to the provision it came from.">
 <meta property="og:type" content="website">
@@ -226,8 +226,9 @@
           <p class="ask">We are amending the year ended 30 June 2024. What was the New South Wales rate and threshold then, and which compilation says so?</p>
         </div>
         <p class="defined">
-          Each is answered from an attested schedule or from the instrument, with the figure computed
-          in code, the working shown and the provision cited. Some questions Toby refuses. Employee
+          Each is answered from a versioned schedule or from the instrument, with the figure computed
+          in code, the working shown, the provision cited and the schedule's verification status
+          stated. Some questions Toby refuses. Employee
           or contractor, whether related entities are grouped, and whether a position is reasonably
           arguable are judgements a person records, with evidence, before a figure is computed.
         </p>
@@ -245,8 +246,9 @@
     <div class="four wide">
       <div>
         <h3>Computed, not generated</h3>
-        <p>Every figure is computed in versioned Python from an attested schedule. The engine imports
-           no AI, so no model writes a number.</p>
+        <p>Every figure is computed in versioned Python from a schedule that names its source and
+           says whether the Compliance Lead has attested it. The engine imports no AI, so no model
+           writes a number.</p>
       </div>
       <div>
         <h3>No PII to AI</h3>
@@ -306,9 +308,8 @@
           factor, nothing to install. Ask, read the working, keep the file note.</p>
         <p class="item"><strong>Connected to your ledger.</strong> Authorise Xero once and the health
           check reads the file server side, then reports what would not survive review.</p>
-        <p class="item"><strong>Send us the file.</strong> Attach a spreadsheet or a document and get
-          it audited against the source, returned as a workbook, a document or plain text with its
-          citations.</p>
+        <p class="item"><strong>Send us the file.</strong> Attach a spreadsheet and get it audited
+          against the source, with each finding and its citation shown in the portal.</p>
         <p class="defined">
           Every way in computes the same figures, keeps the same boundary and makes the same
           refusals.
