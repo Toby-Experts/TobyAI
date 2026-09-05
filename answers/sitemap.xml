@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://www.tobyai.io/answers/</loc><lastmod>2026-09-03</lastmod></url>
-  <url><loc>https://www.tobyai.io/answers/payroll-tax/nsw-2023-24/</loc><lastmod>2026-09-03</lastmod></url>
-  <url><loc>https://www.tobyai.io/answers/payroll-tax/nsw-2024-25/</loc><lastmod>2026-09-03</lastmod></url>
-  <url><loc>https://www.tobyai.io/answers/payroll-tax/nsw-2025-26/</loc><lastmod>2026-09-03</lastmod></url>
-  <url><loc>https://www.tobyai.io/answers/payroll-tax/nsw-2026-27/</loc><lastmod>2026-09-03</lastmod></url>
-  <url><loc>https://www.tobyai.io/answers/payroll-tax/vic-2023-24/</loc><lastmod>2026-09-03</lastmod></url>
-  <url><loc>https://www.tobyai.io/answers/payroll-tax/vic-2024-25/</loc><lastmod>2026-09-03</lastmod></url>
-  <url><loc>https://www.tobyai.io/answers/payroll-tax/vic-2025-26/</loc><lastmod>2026-09-03</lastmod></url>
-  <url><loc>https://www.tobyai.io/answers/payroll-tax/vic-2026-27/</loc><lastmod>2026-09-03</lastmod></url>
-  <url><loc>https://www.tobyai.io/answers/payroll-tax/qld-2023-24/</loc><lastmod>2026-09-03</lastmod></url>
-  <url><loc>https://www.tobyai.io/answers/payroll-tax/qld-2024-25/</loc><lastmod>2026-09-03</lastmod></url>
-  <url><loc>https://www.tobyai.io/answers/payroll-tax/qld-2025-26/</loc><lastmod>2026-09-03</lastmod></url>
-  <url><loc>https://www.tobyai.io/answers/payroll-tax/qld-2026-27/</loc><lastmod>2026-09-03</lastmod></url>
+  <url><loc>https://www.tobyai.io/answers/</loc><lastmod>2026-09-05</lastmod></url>
+  <url><loc>https://www.tobyai.io/answers/payroll-tax-nsw/</loc><lastmod>2026-09-05</lastmod></url>
+  <url><loc>https://www.tobyai.io/answers/payroll-tax-vic/</loc><lastmod>2026-09-05</lastmod></url>
+  <url><loc>https://www.tobyai.io/answers/payroll-tax-qld/</loc><lastmod>2026-09-05</lastmod></url>
+  <url><loc>https://www.tobyai.io/answers/super-guarantee/</loc><lastmod>2026-09-05</lastmod></url>
+  <url><loc>https://www.tobyai.io/answers/fbt-type-1/</loc><lastmod>2026-09-05</lastmod></url>
+  <url><loc>https://www.tobyai.io/answers/genuine-redundancy-tax-free/</loc><lastmod>2026-09-05</lastmod></url>
+  <url><loc>https://www.tobyai.io/answers/company-tax-base-rate/</loc><lastmod>2026-09-05</lastmod></url>
+  <url><loc>https://www.tobyai.io/answers/no-abn-withholding/</loc><lastmod>2026-09-05</lastmod></url>
 </urlset>
