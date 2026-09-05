@@ -1,0 +1,252 @@
+[
+  {
+    "slug": "payroll-tax-nsw",
+    "lead": "A$43,600.00",
+    "rows": [
+      {
+        "label": "Taxable wages",
+        "value": "A$2,000,000.00"
+      },
+      {
+        "label": "Deduction applied",
+        "value": "A$1,200,000.00"
+      },
+      {
+        "label": "Wages above deduction",
+        "value": "A$800,000.00"
+      },
+      {
+        "label": "Rate",
+        "value": "5.45%"
+      },
+      {
+        "label": "Tax payable",
+        "value": "A$43,600.00"
+      }
+    ],
+    "prior_rows": [
+      {
+        "label": "2025-26",
+        "value": "A$43,600.00"
+      },
+      {
+        "label": "2024-25",
+        "value": "A$43,600.00"
+      },
+      {
+        "label": "2023-24",
+        "value": "A$43,600.00"
+      }
+    ]
+  },
+  {
+    "slug": "payroll-tax-vic",
+    "lead": "A$48,500.00",
+    "rows": [
+      {
+        "label": "Taxable wages",
+        "value": "A$2,000,000.00"
+      },
+      {
+        "label": "Deduction applied",
+        "value": "A$1,000,000.00"
+      },
+      {
+        "label": "Wages above deduction",
+        "value": "A$1,000,000.00"
+      },
+      {
+        "label": "Rate",
+        "value": "4.85%"
+      },
+      {
+        "label": "Tax payable",
+        "value": "A$48,500.00"
+      }
+    ],
+    "prior_rows": [
+      {
+        "label": "2025-26",
+        "value": "A$48,500.00"
+      },
+      {
+        "label": "2024-25",
+        "value": "A$53,350.00"
+      },
+      {
+        "label": "2023-24",
+        "value": "A$63,050.00"
+      }
+    ]
+  },
+  {
+    "slug": "payroll-tax-qld",
+    "lead": "A$33,250.00",
+    "rows": [
+      {
+        "label": "Taxable wages",
+        "value": "A$2,000,000.00"
+      },
+      {
+        "label": "Deduction applied",
+        "value": "A$1,300,000.00"
+      },
+      {
+        "label": "Wages above deduction",
+        "value": "A$700,000.00"
+      },
+      {
+        "label": "Rate",
+        "value": "4.75%"
+      },
+      {
+        "label": "Tax payable",
+        "value": "A$33,250.00"
+      }
+    ],
+    "prior_rows": [
+      {
+        "label": "2025-26",
+        "value": "A$33,250.00"
+      },
+      {
+        "label": "2024-25",
+        "value": "A$33,250.00"
+      },
+      {
+        "label": "2023-24",
+        "value": "A$33,250.00"
+      }
+    ]
+  },
+  {
+    "slug": "super-guarantee",
+    "lead": "A$600.00",
+    "rows": [
+      {
+        "label": "Ordinary time earnings",
+        "value": "A$5,000.00"
+      },
+      {
+        "label": "SG rate",
+        "value": "12%"
+      },
+      {
+        "label": "SG payable",
+        "value": "A$600.00"
+      }
+    ],
+    "prior_rows": []
+  },
+  {
+    "slug": "fbt-type-1",
+    "lead": "A$4,888.47",
+    "rows": [
+      {
+        "label": "Taxable value",
+        "value": "A$5,000.00"
+      },
+      {
+        "label": "Type 1 gross-up",
+        "value": "2.0802"
+      },
+      {
+        "label": "Grossed-up amount",
+        "value": "A$10,401.00"
+      },
+      {
+        "label": "FBT rate",
+        "value": "47%"
+      },
+      {
+        "label": "FBT payable",
+        "value": "A$4,888.47"
+      }
+    ],
+    "prior_rows": []
+  },
+  {
+    "slug": "genuine-redundancy-tax-free",
+    "lead": "A$68,006.00",
+    "rows": [
+      {
+        "label": "Redundancy base",
+        "value": "A$13,598.00"
+      },
+      {
+        "label": "Amount per completed year",
+        "value": "A$6,801.00"
+      },
+      {
+        "label": "Completed years",
+        "value": "8"
+      },
+      {
+        "label": "Tax-free amount",
+        "value": "A$68,006.00"
+      },
+      {
+        "label": "Taxable excess",
+        "value": "A$11,994.00"
+      },
+      {
+        "label": "Withholding on excess",
+        "value": "A$3,838.08"
+      }
+    ],
+    "prior_rows": [
+      {
+        "label": "2025-26",
+        "value": "A$65,516.00"
+      }
+    ]
+  },
+  {
+    "slug": "company-tax-base-rate",
+    "lead": "A$50,000.00",
+    "rows": [
+      {
+        "label": "Taxable income",
+        "value": "A$200,000.00"
+      },
+      {
+        "label": "Company tax rate",
+        "value": "25%"
+      },
+      {
+        "label": "Company tax",
+        "value": "A$50,000.00"
+      }
+    ],
+    "prior_rows": [
+      {
+        "label": "2025-26",
+        "value": "A$50,000.00"
+      }
+    ]
+  },
+  {
+    "slug": "no-abn-withholding",
+    "lead": "A$517.00",
+    "rows": [
+      {
+        "label": "Invoice",
+        "value": "A$1,100.00"
+      },
+      {
+        "label": "No-ABN rate",
+        "value": "47%"
+      },
+      {
+        "label": "Withheld",
+        "value": "A$517.00"
+      }
+    ],
+    "prior_rows": [
+      {
+        "label": "2025-26",
+        "value": "A$517.00"
+      }
+    ]
+  }
+]

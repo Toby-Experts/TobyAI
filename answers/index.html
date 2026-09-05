@@ -1,12 +1,12 @@
 <!doctype html>
 <html lang="en">
-<head>
+  <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Answers | TobyAI</title>
-  <meta name="description" content="Payroll tax questions employers ask, answered by TobyAI from the attested state schedules with the working shown.">
+  <meta name="description" content="Deterministic answers to common employer compliance questions.">
   <link rel="canonical" href="https://www.tobyai.io/answers/">
-  <meta property="og:title" content="Answers | TobyAI">
+  <meta property="og:title" content="Answers">
   <meta property="og:url" content="https://www.tobyai.io/answers/">
   <meta property="og:image" content="https://www.tobyai.io/toby_logo_1024.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -30,9 +30,9 @@
     --gutter: 32px;
   }
   body { font-family: var(--sans); background: var(--paper); color: var(--ink);
-    -webkit-font-smoothing: antialiased; line-height: 1.55; }
-  a { color: inherit; }
-  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 var(--gutter); }
+    -webkit-font-smoothing: antialiased; line-height: 1.55; overflow-x: hidden; }
+  a { color: inherit; overflow-wrap: anywhere; }
+  .wrap { max-width: 1040px; min-width: 0; margin: 0 auto; padding: 0 var(--gutter); }
   .bar { display: flex; align-items: center; justify-content: space-between; height: 72px; }
   .brand { display: flex; align-items: center; gap: 11px; font-weight: 600; font-size: 18px;
     color: var(--ink); text-decoration: none; }
@@ -43,58 +43,62 @@
   .bar nav a { color: var(--ink-3); text-decoration: none; }
   .bar nav a:hover { color: var(--teal); }
 
-  .ask-hero { padding-block: 54px 40px; max-width: 760px; }
+  .ask-hero { padding-block: 54px 40px; max-width: 820px; min-width: 0; }
   .eyebrow { font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
     color: var(--teal); margin-bottom: 14px; }
   h1 { font-size: clamp(31px, 3.8vw, 42px); font-weight: 600; line-height: 1.16;
-    letter-spacing: -0.9px; color: var(--ink); }
+    letter-spacing: -0.9px; color: var(--ink); overflow-wrap: anywhere; }
   .lede { font-size: 17px; line-height: 1.65; color: var(--ink-2); margin-top: 18px;
     max-width: 44em; }
 
   .card { color: var(--ink); background: var(--paper); border-radius: 12px;
-    border: 1px solid var(--rule); overflow: hidden; }
+    border: 1px solid var(--rule); overflow: hidden; max-width: 100%; min-width: 0; }
   .card.lift { border: none; box-shadow: 0 18px 44px rgba(9,15,25,0.13); }
   .card-head { padding: 14px 20px; border-bottom: 1px solid var(--rule); background: var(--shell);
     font-size: 13.5px; line-height: 1.5; color: var(--ink-2); }
   .card-head strong { color: var(--ink); font-weight: 600; }
   .card-body { padding: 20px; }
 
-  .answer { display: grid; grid-template-columns: auto 1fr; gap: 28px; align-items: baseline; }
+  .answer { display: grid; grid-template-columns: auto 1fr; gap: 28px; align-items: baseline;
+    min-width: 0; }
   .answer .figure-lead { font-family: var(--serif); font-size: clamp(36px, 4.6vw, 52px);
-    font-weight: 600; line-height: 1; color: var(--teal-display); letter-spacing: -0.5px; }
+    font-weight: 600; line-height: 1; color: var(--teal-display); letter-spacing: -0.5px;
+    white-space: nowrap; }
   .answer .per { display: block; font-family: var(--sans); font-size: 12px; font-weight: 600;
     letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); margin-top: 10px; }
-  .answer p { font-family: var(--serif); font-size: 17px; line-height: 1.6; color: var(--ink); }
+  .answer p { font-family: var(--serif); font-size: 17px; line-height: 1.6; color: var(--ink);
+    overflow-wrap: anywhere; }
 
   .band { padding-block: 44px 0; }
   .band-label { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
     color: var(--ink-3); margin-bottom: 12px; }
-  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start;
+    min-width: 0; }
 
-  dl.rows, table { width: 100%; }
+  dl.rows, table { width: 100%; border-collapse: collapse; table-layout: fixed; }
   dl.rows div { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 16px;
     padding: 10px 0; border-bottom: 1px solid var(--rule); font-size: 14.5px; }
   dl.rows div:last-child { border-bottom: 0; padding-bottom: 0; }
   dl.rows div:first-child { padding-top: 0; }
   dt { color: var(--ink-2); }
   dd { color: var(--ink); }
-  dd.figure { font-family: var(--serif); font-size: 17px; }
-  table { border-collapse: collapse; }
+  dd.figure { font-family: var(--serif); font-size: 17px; overflow-wrap: anywhere; }
   th, td { padding: 10px 0; border-bottom: 1px solid var(--rule); font-size: 14.5px; }
   tr:first-child th, tr:first-child td { padding-top: 0; }
   tr:last-child th, tr:last-child td { border-bottom: 0; padding-bottom: 0; }
   th { font-weight: 400; color: var(--ink-2); text-align: left; }
   td { text-align: right; font-family: var(--serif); font-size: 17px;
-    font-variant-numeric: tabular-nums; }
+    font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
   tr.total th { color: var(--ink); font-weight: 600; }
   tr.total td { color: var(--teal); font-weight: 600; }
   .defined { font-size: 12.5px; color: var(--ink-3); margin-top: 14px; line-height: 1.55; }
 
-  .source dl.rows div { grid-template-columns: minmax(0, 0.55fr) minmax(0, 2fr); }
-  .source dd { overflow-wrap: anywhere; }
+  .source-link { font-size: 15.5px; line-height: 1.6; }
+  .source-link + .source-link { margin-top: 8px; }
   .source a { color: var(--teal); text-decoration: none; }
   .source a:hover { text-decoration: underline; }
 
+  .prior { margin-top: 44px; }
   .cta { margin-top: 44px; background: var(--navy); color: white; border-radius: 12px;
     padding: 26px 28px; display: flex; align-items: center; justify-content: space-between;
     gap: 24px; }
@@ -104,17 +108,16 @@
     font-size: 15px; font-weight: 600; text-decoration: none; }
   .btn:hover { background: var(--teal-d); }
 
-  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px;
+    min-width: 0; }
   a.tile { text-decoration: none; display: flex; flex-direction: column; gap: 10px;
-    padding: 18px 18px 16px; }
+    padding: 18px 18px 16px; min-width: 0; }
   a.tile:hover { border-color: var(--teal); }
   .tag { display: inline-block; align-self: flex-start; font-size: 10.5px; font-weight: 700;
     letter-spacing: 0.08em; text-transform: uppercase; color: var(--teal);
     background: rgba(11,125,132,0.09); border-radius: 4px; padding: 4px 8px; }
-  .state { margin-bottom: 44px; }
-  .state h2 { font-family: var(--serif); font-size: 21px; font-weight: 400; line-height: 1.4;
-    color: var(--ink); max-width: 34em; margin-bottom: 18px; }
-  .tile .ask { font-size: 13.5px; line-height: 1.5; color: var(--ink-2); flex: 1; }
+  .tile .ask { font-size: 13.5px; line-height: 1.5; color: var(--ink-2); flex: 1;
+    overflow-wrap: anywhere; }
   .tile .figure-lead { font-family: var(--serif); font-size: 28px; font-weight: 600;
     color: var(--teal-display); letter-spacing: -0.3px; }
   .tile .more { font-size: 12.5px; color: var(--ink-3); }
@@ -124,7 +127,7 @@
   footer a:hover { color: var(--teal); }
 
   @media (max-width: 860px) {
-    .two, .grid { grid-template-columns: 1fr; }
+    .two, .grid { grid-template-columns: minmax(0, 1fr); }
     .grid { gap: 12px; }
     .answer { grid-template-columns: 1fr; gap: 14px; }
     .cta { flex-direction: column; align-items: flex-start; }
@@ -134,123 +137,79 @@
   @media (max-width: 600px) {
     :root { --gutter: 20px; }
     dl.rows div { grid-template-columns: 1fr; gap: 2px; }
-    .source dl.rows div { grid-template-columns: 1fr; }
   }
 
   </style>
 </head>
-<body>
+  <body>
     <header class="wrap">
       <div class="bar">
-        <a class="brand" href="https://www.tobyai.io/"><span class="mark">T</span>TobyAI</a>
-        <nav><a href="https://www.tobyai.io/answers/">All answers</a></nav>
+        <a class="brand" href="https://www.tobyai.io/">
+          <span class="mark">T</span>TobyAI
+        </a>
+        <nav><a href="https://www.tobyai.io/answers/">Answers</a></nav>
       </div>
     </header>
     <main class="wrap">
       <div class="ask-hero">
         <p class="eyebrow">Answers</p>
-        <h1>What employers ask, answered from the schedule.</h1>
-        <p class="lede">Each answer is computed in auditable code from a state schedule the
-        Compliance Lead attested, with the threshold, the rate, the working and the publisher
-        it came from.</p>
+        <h1>What employers ask, answered.</h1>
+        <p class="lede">
+          Each answer shows the figure, the working behind it and the source
+          page it comes from.
+        </p>
       </div>
-      <section class="state">
-        <p class="band-label">New South Wales</p>
-        <h2>I employ in New South Wales and expect A$2,000,000 in wages. What payroll tax will I pay?</h2>
-        <div class="grid">
-        <a class="card tile" href="https://www.tobyai.io/answers/payroll-tax/nsw-2026-27/">
+      <div class="grid">
+        <a class="card tile" href="https://www.tobyai.io/answers/payroll-tax-nsw/">
           <span class="tag">2026-27</span>
-          <span class="figure-lead">A$43,600</span>
-          <span class="ask">5.45% on wages above the A$1,200,000 deduction</span>
+          <span class="ask">I employ in New South Wales and expect A$2,000,000 in wages. What payroll tax will I pay?</span>
+          <span class="figure-lead">A$43,600.00</span>
           <span class="more">Read the working</span>
         </a>
-        <a class="card tile" href="https://www.tobyai.io/answers/payroll-tax/nsw-2025-26/">
-          <span class="tag">2025-26</span>
-          <span class="figure-lead">A$43,600</span>
-          <span class="ask">5.45% on wages above the A$1,200,000 deduction</span>
-          <span class="more">Read the working</span>
-        </a>
-        <a class="card tile" href="https://www.tobyai.io/answers/payroll-tax/nsw-2024-25/">
-          <span class="tag">2024-25</span>
-          <span class="figure-lead">A$43,600</span>
-          <span class="ask">5.45% on wages above the A$1,200,000 deduction</span>
-          <span class="more">Read the working</span>
-        </a>
-        <a class="card tile" href="https://www.tobyai.io/answers/payroll-tax/nsw-2023-24/">
-          <span class="tag">2023-24</span>
-          <span class="figure-lead">A$43,600</span>
-          <span class="ask">5.45% on wages above the A$1,200,000 deduction</span>
-          <span class="more">Read the working</span>
-        </a>
-        </div>
-      </section>
-      <section class="state">
-        <p class="band-label">Victoria</p>
-        <h2>I employ in Victoria and expect A$2,000,000 in wages. What payroll tax will I pay?</h2>
-        <div class="grid">
-        <a class="card tile" href="https://www.tobyai.io/answers/payroll-tax/vic-2026-27/">
+        <a class="card tile" href="https://www.tobyai.io/answers/payroll-tax-vic/">
           <span class="tag">2026-27</span>
-          <span class="figure-lead">A$48,500</span>
-          <span class="ask">4.85% on wages above the A$1,000,000 deduction</span>
+          <span class="ask">I employ in Victoria and expect A$2,000,000 in wages. What payroll tax will I pay?</span>
+          <span class="figure-lead">A$48,500.00</span>
           <span class="more">Read the working</span>
         </a>
-        <a class="card tile" href="https://www.tobyai.io/answers/payroll-tax/vic-2025-26/">
-          <span class="tag">2025-26</span>
-          <span class="figure-lead">A$48,500</span>
-          <span class="ask">4.85% on wages above the A$1,000,000 deduction</span>
-          <span class="more">Read the working</span>
-        </a>
-        <a class="card tile" href="https://www.tobyai.io/answers/payroll-tax/vic-2024-25/">
-          <span class="tag">2024-25</span>
-          <span class="figure-lead">A$53,350</span>
-          <span class="ask">4.85% on wages above the A$900,000 deduction</span>
-          <span class="more">Read the working</span>
-        </a>
-        <a class="card tile" href="https://www.tobyai.io/answers/payroll-tax/vic-2023-24/">
-          <span class="tag">2023-24</span>
-          <span class="figure-lead">A$63,050</span>
-          <span class="ask">4.85% on wages above the A$700,000 deduction</span>
-          <span class="more">Read the working</span>
-        </a>
-        </div>
-      </section>
-      <section class="state">
-        <p class="band-label">Queensland</p>
-        <h2>I employ in Queensland and expect A$2,000,000 in wages. What payroll tax will I pay?</h2>
-        <div class="grid">
-        <a class="card tile" href="https://www.tobyai.io/answers/payroll-tax/qld-2026-27/">
+        <a class="card tile" href="https://www.tobyai.io/answers/payroll-tax-qld/">
           <span class="tag">2026-27</span>
-          <span class="figure-lead">A$33,250</span>
-          <span class="ask">4.75% on wages above the A$1,300,000 deduction</span>
+          <span class="ask">I employ in Queensland and expect A$2,000,000 in wages. What payroll tax will I pay?</span>
+          <span class="figure-lead">A$33,250.00</span>
           <span class="more">Read the working</span>
         </a>
-        <a class="card tile" href="https://www.tobyai.io/answers/payroll-tax/qld-2025-26/">
-          <span class="tag">2025-26</span>
-          <span class="figure-lead">A$33,250</span>
-          <span class="ask">4.75% on wages above the A$1,300,000 deduction</span>
+        <a class="card tile" href="https://www.tobyai.io/answers/super-guarantee/">
+          <span class="tag">2026-27</span>
+          <span class="ask">I pay an employee A$5,000 in ordinary time earnings this payday. How much super guarantee do I owe?</span>
+          <span class="figure-lead">A$600.00</span>
           <span class="more">Read the working</span>
         </a>
-        <a class="card tile" href="https://www.tobyai.io/answers/payroll-tax/qld-2024-25/">
-          <span class="tag">2024-25</span>
-          <span class="figure-lead">A$33,250</span>
-          <span class="ask">4.75% on wages above the A$1,300,000 deduction</span>
+        <a class="card tile" href="https://www.tobyai.io/answers/fbt-type-1/">
+          <span class="tag">2026-27</span>
+          <span class="ask">I give an employee a benefit with a taxable value of A$5,000 and I can claim the GST credit. What FBT do I pay for the year ending 31 March 2027?</span>
+          <span class="figure-lead">A$4,888.47</span>
           <span class="more">Read the working</span>
         </a>
-        <a class="card tile" href="https://www.tobyai.io/answers/payroll-tax/qld-2023-24/">
-          <span class="tag">2023-24</span>
-          <span class="figure-lead">A$33,250</span>
-          <span class="ask">4.75% on wages above the A$1,300,000 deduction</span>
+        <a class="card tile" href="https://www.tobyai.io/answers/genuine-redundancy-tax-free/">
+          <span class="tag">2026-27</span>
+          <span class="ask">An employee is made genuinely redundant after 8 completed years and receives A$80,000. How much is tax free?</span>
+          <span class="figure-lead">A$68,006.00</span>
           <span class="more">Read the working</span>
         </a>
-        </div>
-      </section>
+        <a class="card tile" href="https://www.tobyai.io/answers/company-tax-base-rate/">
+          <span class="tag">2026-27</span>
+          <span class="ask">My company is a base rate entity with A$200,000 taxable income. What company tax will I pay?</span>
+          <span class="figure-lead">A$50,000.00</span>
+          <span class="more">Read the working</span>
+        </a>
+        <a class="card tile" href="https://www.tobyai.io/answers/no-abn-withholding/">
+          <span class="tag">2026-27</span>
+          <span class="ask">A supplier invoices me A$1,100 and has not quoted an ABN. How much do I withhold?</span>
+          <span class="figure-lead">A$517.00</span>
+          <span class="more">Read the working</span>
+        </a>
+      </div>
     </main>
-    <footer class="wrap">
-      <a href="mailto:hello@tobyai.io">hello@tobyai.io</a> ·
-      <a href="https://www.tobyai.io/privacy.html">Privacy</a> ·
-      <a href="https://www.tobyai.io/terms.html">Terms</a> ·
-      <a href="https://www.tobyai.io/answers/">Answers</a> ·
-      © 2026 TobyAI
-    </footer>
-</body>
+    <footer class="wrap">Built from versioned schedules. <a href="https://www.tobyai.io/">TobyAI</a> · generated 2026-09-05</footer>
+  </body>
 </html>
